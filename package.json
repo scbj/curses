@@ -1,7 +1,7 @@
 {
   "name": "curses",
   "version": "0.1.0",
-  "private": true,
+  "description": "A Vue.js project to manage common expenses",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -21,8 +21,11 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "mongoose": "^5.6.0",
+    "netlify-identity-widget": "^1.5.5",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
+    "vue-cli-plugin-netlify-lambda": "^0.1.1",
     "vue-template-compiler": "^2.6.10"
   }
 }
