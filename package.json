@@ -9,8 +9,10 @@
   "description": "A Vue.js project to manage common expenses",
   "scripts": {
     "serve": "vue-cli-service serve",
+    "build:svg": "vsvg -s ./svg -t ./src/assets/compiled-svg",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "clean": "rm -rf dist lambda node_modules"
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -32,6 +34,7 @@
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-netlify-lambda": "^0.1.1",
+    "vue-svgicon": "^3.2.6",
     "vue-template-compiler": "^2.6.10"
   }
 }
