@@ -12308,6 +12308,11 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
   integrity sha512-iq+S7vZJE60yejDYM0ek6zg308+UZsdtPExWP9VZoCFCz1zkJoXFnAX7aZfd/ZwrkidzdUZL0C/ryW+JwAiIGw==
 
+vue-class-component@^7.0.2:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.1.0.tgz#b33efcb10e17236d684f70b1e96f1946ec793e87"
+  integrity sha512-G9152NzUkz0i0xTfhk0Afc8vzdXxDR1pfN4dTwE72cskkgJtdXfrKBkMfGvDuxUh35U500g5Ve4xL8PEGdWeHg==
+
 vue-cli-plugin-apollo@^0.20.0:
   version "0.20.0"
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-apollo/-/vue-cli-plugin-apollo-0.20.0.tgz#0539ec96d8502cbe2fd9ab6a431f5b989145e396"
@@ -12417,6 +12422,13 @@ vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
+
+vuex-pathify@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/vuex-pathify/-/vuex-pathify-1.2.3.tgz#ed97259a79a2a6057501d2ef575e424f0167bc45"
+  integrity sha512-49u16BV7vzWq/WdMvxknRsvT7CkL1m21oUS+Q5UFgQzpGyfUnrWVVaFdZJgRi3jUFQQKh6/rr4/AZKByjZWY0g==
+  dependencies:
+    vue-class-component "^7.0.2"
 
 vuex@^3.0.1:
   version "3.1.1"
