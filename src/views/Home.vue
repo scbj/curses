@@ -5,12 +5,18 @@
       alt="Vue logo"
       src="../assets/images/title.svg"
     >
-    <svgicon
-      icon="user"
-      color="#405348"
-      height="36.2"
-      width="36.2"
-    />
+    <figure
+      class="profile"
+      @click="logout"
+    >
+      <svgicon
+        icon="user"
+        color="#405348"
+        height="36.2"
+        width="36.2"
+      />
+    </figure>
+
     <RefundBalance />
     <TransactionList />
   </div>
@@ -28,6 +34,12 @@ export default {
   components: {
     RefundBalance,
     TransactionList
+  },
+
+  methods: {
+    logout () {
+      this.$store.dispatch('logout')
+    }
   }
 }
 </script>
@@ -41,7 +53,7 @@ export default {
 }
 
 .logo,
-.svg-icon {
+.profile {
   grid-row: 1;
   grid-column: 1;
 }
@@ -50,7 +62,7 @@ export default {
   transform: translateX(-1em)
 }
 
-.svg-icon {
+.profile {
   justify-self: flex-end;
 }
 
