@@ -12,6 +12,10 @@ export const state = {
 }
 
 export const getters = {
+  /**
+ * Returns true if the user is authenticated.
+ * @returns {Boolean}
+ */
   isAuthenticated (state) {
     return !!state.user
   }

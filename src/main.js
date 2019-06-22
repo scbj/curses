@@ -7,7 +7,9 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-Vue.use(VueSVGIcon)
+Vue.use(VueSVGIcon, {
+  isStroke: true
+})
 
 new Vue({
   router,

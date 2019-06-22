@@ -1,3 +1,5 @@
+@import 'vue-svgicon';
+
 *,
 *::before,
 *::after {
@@ -7,6 +9,7 @@
 }
 
 body {
+  // Because modals are a nightmare with the scroll bar I simply decide to hide it all the time.
   -ms-overflow-style: none;
   
   &::-webkit-scrollbar {
