@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <img
+      class="logo"
       alt="Vue logo"
       src="../assets/images/title.svg"
     >
@@ -11,6 +12,7 @@
       width="36.2"
     />
     <RefundBalance />
+    <TransactionList />
   </div>
 </template>
 
@@ -18,12 +20,14 @@
 import '../assets/compiled-svg/user'
 
 import RefundBalance from '@/components/RefundBalance'
+import TransactionList from '@/components/TransactionList'
 
 export default {
   name: 'Home',
 
   components: {
-    RefundBalance
+    RefundBalance,
+    TransactionList
   }
 }
 </script>
@@ -31,9 +35,23 @@ export default {
 <style lang="scss" scoped>
 .home {
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 6rem;
+  grid-template-columns: auto;
+  grid-gap: 1.5rem;
   padding: 52px 32px 0 36px;
+}
+
+.logo,
+.svg-icon {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.logo {
+  transform: translateX(-1em)
+}
+
+.svg-icon {
+  justify-self: flex-end;
 }
 
 .refund-balance {

@@ -16,7 +16,7 @@
 export default {
   data () {
     return {
-      amount: -23.61
+      amount: 23.61
     }
   },
 
