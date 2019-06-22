@@ -10,14 +10,21 @@
       height="36.2"
       width="36.2"
     />
+    <RefundBalance />
   </div>
 </template>
 
 <script>
 import '../assets/compiled-svg/user'
 
+import RefundBalance from '@/components/RefundBalance'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+
+  components: {
+    RefundBalance
+  }
 }
 </script>
 
@@ -25,6 +32,11 @@ export default {
 .home {
   display: grid;
   grid-template-columns: 1fr auto;
+  grid-template-rows: 6rem;
   padding: 52px 32px 0 36px;
+}
+
+.refund-balance {
+  grid-row: 2;
 }
 </style>
