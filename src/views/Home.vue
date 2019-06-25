@@ -7,7 +7,7 @@
     >
     <figure
       class="profile"
-      @click="logout"
+      @click="logout()"
     >
       <svgicon
         icon="user"

@@ -5,6 +5,7 @@ import HandlerCollection from './HandlerCollection'
 export default class {
   constructor () {
     this.handlers = new HandlerCollection()
+    console.log('TCL: constructor -> this.handlers', this.handlers)
   }
 
   /**
@@ -19,6 +20,7 @@ export default class {
     const { method, path } = req
 
     try {
+      console.log('TCL: handle -> this.handlers', this.handlers)
       const handler = this.handlers.find(method, path)
       handler(req, res)
     } catch (error) {
