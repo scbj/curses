@@ -4,7 +4,11 @@ import HandlerCollection from './HandlerCollection'
 
 export default class {
   constructor () {
-    this.handlers = new HandlerCollection()
+    try {
+      this.handlers = new HandlerCollection()
+    } catch (error) {
+      console.log('TCL: constructor -> error', error)
+    }
     console.log('TCL: constructor -> this.handlers', this.handlers)
   }
 
