@@ -22,7 +22,7 @@ export default class {
       const handler = this.handlers.find(method, path)
       handler(req, res)
     } catch (error) {
-      // console.log(error)
+      console.log(error)
       // res.sendStatus(404)
       res.status(404).json({ error: 'Not Found' })
     }
