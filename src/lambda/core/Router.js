@@ -1,12 +1,10 @@
-import Request from './messages/Request'
-import Response from './messages/Response'
+import { createRequest } from './messages/request'
+import { createResponse } from './messages/response'
 import HandlerCollection from './HandlerCollection'
 
 export default class {
   constructor () {
-    console.log('Constructor called.')
     this.handlers = new HandlerCollection()
-    console.log('TCL: constructor -> this.handlers', this.handlers)
   }
 
   /**
@@ -15,22 +13,24 @@ export default class {
  * @param {Object} context
  */
   handle (event, context) {
-    const req = new Request(event, context)
-    const res = new Response()
+    const req = createRequest(event)
+    const res = createResponse()
 
     const { method, path } = req
 
     try {
-      console.log('TCL: handle -> this.handlers', this.handlers)
       const handler = this.handlers.find(method, path)
-      handler(req, res)
+      return handler(req, res)
     } catch (error) {
-      console.log(error)
+      console.log('TCL: handle -> error', error)
       // res.sendStatus(404)
       res.status(404).json({ error: 'Not Found' })
     }
 
-    return res.create()
+    const response = res.create()
+    console.log('TCL: handle -> response', response)
+
+    return response
   }
 
   addRoute (method, path, handler) {

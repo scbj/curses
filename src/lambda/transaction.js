@@ -2,8 +2,7 @@ import { createResponse } from './server/app'
 
 export function handler (event, context, callback) {
   try {
-    const response = createResponse(event, context)
-    callback(null, response)
+    callback(null, createResponse(event, context))
   } catch (error) {
     callback(error)
   }

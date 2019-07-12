@@ -12,5 +12,6 @@ export function createResponse (event, context) {
   app.post('/transaction', (req, res) => {
     return res.sendStatus(204)
   })
+
   return app.handle(event, context)
 }

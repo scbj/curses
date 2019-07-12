@@ -1,39 +1,49 @@
+/**
+   * Returns the specified HTTP request header field (case-insensitive match).
+   * @param {Array} headers The header array
+   * @param {String} field The HTTP header name
+   */
+function get (headers, field) {
+  return headers && headers[field && field.toLowerCase()]
+}
+
 /** Defines the request headers and use X-Forwarded headers to populate attributes. */
-function useHeaders ({ headers }) {
-  this.headers = headers
-  this.hostname = this.get('X-Forwarded-Host')
-  this.ip = this.get('X-Forwarded-For')
-  this.protocol = this.get('X-Forwarded-Proto')
+function useForwardedHeaders ({ headers }) {
+  return {
+    headers,
+    hostname: get(headers, 'X-Forwarded-Host'),
+    ip: get(headers, 'X-Forwarded-For'),
+    protocol: get(headers, 'X-Forwarded-Proto')
+  }
 }
 
 /** Use payloads passed through the body and the query parameters. */
 function usePayload ({ headers, body, queryStringParameters }) {
-  const contentType = 'content-type'
-  const hasBody = contentType in headers
-  const isJson = hasBody && headers[contentType] === 'application/json'
-
-  this.body = hasBody && isJson
-    ? JSON.parse(body)
-    : {}
-  this.query = queryStringParameters || {}
+  return {
+    body: get(headers, 'Content-Type') || {},
+    query: queryStringParameters || {}
+  }
 }
 
-export default class {
-  constructor (event, context) {
-    const { httpMethod, path } = event
+export function createRequest (event) {
+  const { httpMethod, path, headers } = event
 
-    useHeaders.call(this, event)
-    usePayload.call(this, event)
-
-    this.method = httpMethod
-    this.path = path
+  const options = {
+    ...useForwardedHeaders(event),
+    ...usePayload(event),
+    path,
+    method: httpMethod
   }
 
-  /**
-   * Returns the specified HTTP request header field (case-insensitive match).
-   * @param {String} field The HTTP header name
-   */
-  get (field) {
-    return this.headers[field && field.toLowerCase()]
+  return {
+    ...options,
+
+    /**
+     * Returns the specified HTTP request header field (case-insensitive match).
+     * @param {String} field The HTTP header name
+     */
+    get (field) {
+      return get(headers, field)
+    }
   }
 }
