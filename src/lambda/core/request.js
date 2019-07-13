@@ -1,3 +1,7 @@
+/**
+ * Create a request object from the event object pass to function handler.
+ * @param {Object} event The AWS Lambda event object
+ */
 export function createRequest (event) {
   const {
     httpMethod,

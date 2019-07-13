@@ -1,13 +1,11 @@
-function getDefaultAttributes () {
-  return {
+/** Create the response object. */
+export function createResponse () {
+  // Create the base response object with default values
+  let response = {
     statusCode: 200,
     headers: {},
     body: ''
   }
-}
-
-export function createResponse () {
-  let response = getDefaultAttributes()
 
   /**
    * Set the specified header.
