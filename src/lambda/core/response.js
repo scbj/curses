@@ -1,45 +1,30 @@
-/**
- * Set the specified header.
- * @param {Object} param0
- * @param {String} headerName
- * @param {String} value
- */
-function setHeader ({ headers }, headerName, value) {
-  return {
-    ...headers,
-    [headerName]: value
-  }
-}
-
-function sendJson (options, payload) {
-  return {
-    ...options,
-    headers: setHeader(options, 'Content-Type', 'application/json'),
-    body: JSON.stringify(payload)
-  }
-}
-
 function getDefaultAttributes () {
   return {
     statusCode: 200,
     headers: {},
-    body: {}
+    body: ''
   }
 }
 
 export function createResponse () {
-  let options = getDefaultAttributes()
+  let response = getDefaultAttributes()
+
+  /**
+   * Set the specified header.
+   * @param {String} name
+   */
+  const setHeader = (name, value) => {
+    response.headers[name] = value
+  }
 
   return {
-    ...options,
-
     /**
      * Send the specified object as JSON.
      * @param {Object} payload
      */
     json (payload) {
-      options = sendJson(options, payload)
-      return options
+      setHeader('Content-Type', 'application/json')
+      response.body = JSON.stringify(payload)
     },
 
     /**
@@ -47,7 +32,7 @@ export function createResponse () {
      * @param {Number} code
      */
     status (code) {
-      options.statusCode = code
+      response.statusCode = code
       return this
     },
 
@@ -62,9 +47,8 @@ export function createResponse () {
     /**
      * Create the AWS lambda response object.
      */
-    create () {
-      return options
+    pack () {
+      return response
     }
-
   }
 }
