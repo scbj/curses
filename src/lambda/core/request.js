@@ -34,7 +34,7 @@ export function createRequest (event, context) {
   const usePayload = () => {
     const isJson = getHeader('Content-Type') === 'application/json'
     return {
-      body: isJson ? JSON.parse(body) : {},
+      body: body && isJson ? JSON.parse(body) : {},
       query: queryStringParameters || {}
     }
   }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import routes from '@/router/routes'
-import { requiresAuth } from '@/middlewares/auth.js'
+import { requiresAuth } from '@/router/middlewares/auth.js'
 
 Vue.use(Router)
 

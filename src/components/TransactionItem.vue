@@ -1,13 +1,16 @@
 <template>
   <div class="transaction-item">
-    <span class="label">{{ transaction.label }}</span>
+    <span class="label">{{ transaction.description }}</span>
     <span class="date">{{ transaction.date }}</span>
-    <span class="amount">{{ transaction.amount }}</span>
+    <span class="amount">{{ transaction.amount |currency }}</span>
   </div>
 </template>
 
 <script>
+import { currency } from '@/filters/number'
+
 export default {
+  filters: { currency },
   props: {
     transaction: {
       type: Object,

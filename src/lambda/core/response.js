@@ -1,3 +1,5 @@
+import statuses from 'statuses'
+
 /** Create the response object. */
 export function createResponse () {
   // Create the base response object with default values
@@ -39,6 +41,8 @@ export function createResponse () {
      * @param {Number} code
      */
     sendStatus (code) {
+      setHeader('Content-Type', 'text/html')
+      response.body = statuses[code] || String(code)
       this.status(code)
     },
 

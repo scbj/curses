@@ -17,6 +17,8 @@
 <script>
 import TransactionItem from '@/components/TransactionItem'
 
+import api from '@/services/api'
+
 export default {
   components: {
     TransactionItem
@@ -46,6 +48,13 @@ export default {
           amount: '3,18 €'
         }
       ]
+    }
+  },
+
+  async mounted () {
+    const transactions = await api('transaction.list')
+    if (transactions) {
+      this.transactions = transactions
     }
   }
 }
