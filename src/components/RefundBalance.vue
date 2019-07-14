@@ -4,6 +4,7 @@
       Solde de remboursement :
     </h3>
     <span
+      v-if="ready"
       class="amount"
       :class="{ negative: isNegative }"
     >
@@ -17,12 +18,15 @@ import api from '@/services/api'
 
 import { currency } from '@/filters/number'
 
+window.api = api
+
 export default {
   filters: { currency },
 
   data () {
     return {
-      amount: 23.61
+      amount: 0,
+      ready: false
     }
   },
 
@@ -40,6 +44,7 @@ export default {
     const { amount } = await api('balance.fetch')
     if (amount) {
       this.amount = amount
+      this.ready = true
     }
   }
 }

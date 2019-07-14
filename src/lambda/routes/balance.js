@@ -15,10 +15,13 @@ export default {
         }
       }
     }
-    const data = await Transaction.aggregate([
+    const [ { amount } ] = await Transaction.aggregate([
       conditionStep,
       groupStep
     ])
-    return res.json(data[0])
+
+    return res.json({
+      amount
+    })
   })
 }
