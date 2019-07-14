@@ -27,7 +27,7 @@ export default {
   // justify-content: center;
   padding: 50px 34px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 img {
