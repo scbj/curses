@@ -19,9 +19,12 @@ function filterParams (params, options) {
 export default {
   create: authenticate(async (req, res) => {
     // Retreive user inputs
-    const expectedFields = [ 'description', 'amount', 'owner' ]
-    const params = filterParams(req.body, expectedFields)
-    params.date = new Date()
+    const expectedFields = [ 'description', 'amount' ]
+    const params = {
+      ...filterParams(req.body, expectedFields),
+      date: new Date(),
+      owner: req.user.user_metadata.full_name
+    }
 
     // Create a Transaction from the specified params
     const transaction = new Transaction(params)
