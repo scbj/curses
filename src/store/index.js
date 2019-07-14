@@ -18,6 +18,10 @@ export const getters = {
  */
   isAuthenticated (state) {
     return !!state.user
+  },
+
+  username (state) {
+    return state.user && state.user.user_metadata.full_name
   }
 }
 

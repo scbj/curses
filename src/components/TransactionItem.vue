@@ -1,21 +1,32 @@
 <template>
   <div class="transaction-item">
     <span class="label">{{ transaction.description }}</span>
-    <span class="date">{{ transaction.date }}</span>
-    <span class="amount">{{ transaction.amount |currency }}</span>
+    <span class="date">
+      {{ transaction.date | calendar | capitalize }} par {{ username }}
+    </span>
+    <span class="amount">{{ transaction.amount | currency }}</span>
   </div>
 </template>
 
 <script>
+import { get } from 'vuex-pathify'
+
 import { currency } from '@/filters/number'
+import { calendar } from '@/filters/date'
+import { capitalize } from '@/filters/string'
 
 export default {
-  filters: { currency },
+  filters: { currency, calendar, capitalize },
+
   props: {
     transaction: {
       type: Object,
       required: true
     }
+  },
+
+  computed: {
+    username: get('username')
   }
 }
 </script>
