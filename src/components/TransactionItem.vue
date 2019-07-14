@@ -5,7 +5,7 @@
   >
     <span class="label">{{ transaction.description }}</span>
     <span class="date">
-      {{ transaction.date | calendar | capitalize }} par {{ username }}
+      {{ transaction.date | calendar | capitalize }} par {{ transaction.owner }}
     </span>
     <span
       class="amount"
@@ -15,8 +15,6 @@
 </template>
 
 <script>
-import { get } from 'vuex-pathify'
-
 import { currency } from '@/filters/number'
 import { calendar } from '@/filters/date'
 import { capitalize } from '@/filters/string'
@@ -29,10 +27,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-
-  computed: {
-    username: get('username')
   }
 }
 </script>
