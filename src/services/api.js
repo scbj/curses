@@ -20,6 +20,7 @@ export default async function api (action, payload) {
       body: payload && JSON.stringify(payload)
     }
     const response = await fetch('/.netlify/functions/api', options)
+    window.response = response
     return response.headers.get('Content-Type') === 'application/json'
       ? response.json()
       : response.text()
