@@ -17,6 +17,11 @@ export default {
     }
     const [ { amount } ] = await Transaction.aggregate([
       conditionStep,
+      {
+        $project: {
+          amount: 1
+        }
+      },
       groupStep
     ])
 
