@@ -33,7 +33,7 @@
     "netlify-identity-widget": "^1.5.5",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
-    "vue-cli-plugin-netlify-lambda": "^0.1.1",
+    "vue-cli-plugin-netlify-lambda": "https://github.com/scbj/vue-cli-plugin-netlify-lambda",
     "vue-svgicon": "^3.2.6",
     "vue-template-compiler": "^2.6.10"
   }

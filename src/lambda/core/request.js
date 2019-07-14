@@ -2,13 +2,15 @@
  * Create a request object from the event object pass to function handler.
  * @param {Object} event The AWS Lambda event object
  */
-export function createRequest (event) {
+export function createRequest (event, context) {
   const {
     httpMethod,
     path,
     headers,
     queryStringParameters
   } = event
+
+  const { clientContext } = context
 
   /**
    * Returns the specified HTTP request header field (case-insensitive match).
@@ -42,6 +44,7 @@ export function createRequest (event) {
     headers,
     path,
     method: httpMethod,
+    user: clientContext.user,
 
     getHeader
   }

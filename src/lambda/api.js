@@ -3,9 +3,9 @@ import routes from './routes'
 import { createRequest } from './core/request'
 import { createResponse } from './core/response'
 
-function handle (event, context) {
+async function handle (event, context) {
   // Create request object to easily access request informations from event object
-  const req = createRequest(event)
+  const req = createRequest(event, context)
 
   // Retreive the controller action requested
   const action = req.getHeader('Controller-Action')
@@ -19,9 +19,9 @@ function handle (event, context) {
   if (controller in routes && func in routes[controller]) {
     // Retreive handler and call it with the created request & repsonse
     const handler = routes[controller][func]
-    handler(req, res)
+    await handler(req, res)
   } else {
-    // Route doesn't exist, sent Not Found to the client
+    // Route doesn't exist, send Not Found to the client
     res.sendStatus(404)
   }
 
@@ -29,10 +29,17 @@ function handle (event, context) {
   return res.pack()
 }
 
-export function handler (event, context, callback) {
+export async function handler (event, context) {
+  // Enable async handler
+  context.callbackWaitsForEmptyEventLoop = false
+
   try {
-    callback(null, handle(event, context))
+    return await handle(event, context)
   } catch (error) {
-    callback(error)
+    console.log('TCL: handler -> error', error)
+    return {
+      statusCode: 500,
+      body: JSON.stringify(error)
+    }
   }
 }
