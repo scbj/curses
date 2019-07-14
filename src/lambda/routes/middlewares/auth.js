@@ -5,6 +5,6 @@ export function authenticate (next) {
     if (!isAuthenticated) {
       return res.sendStatus(403)
     }
-    next(req, res)
+    return next(req, res)
   }
 }

@@ -1,3 +1,4 @@
+import './core/database'
 import routes from './routes'
 
 import { createRequest } from './core/request'

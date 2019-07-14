@@ -4,9 +4,10 @@
  */
 export function createRequest (event, context) {
   const {
+    body,
+    headers,
     httpMethod,
     path,
-    headers,
     queryStringParameters
   } = event
 
@@ -31,8 +32,9 @@ export function createRequest (event, context) {
 
   /** Use payloads passed through the body and the query parameters. */
   const usePayload = () => {
+    const isJson = getHeader('Content-Type') === 'application/json'
     return {
-      body: getHeader('Content-Type') || {},
+      body: isJson ? JSON.parse(body) : {},
       query: queryStringParameters || {}
     }
   }
