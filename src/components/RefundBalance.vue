@@ -7,13 +7,19 @@
       class="amount"
       :class="{ negative: isNegative }"
     >
-      <em>{{ signedAmount }}</em> €
+      <em>{{ sign }} {{ Math.abs(amount) | currency }}</em> €
     </span>
   </section>
 </template>
 
 <script>
+import api from '@/services/api'
+
+import { currency } from '@/filters/number'
+
 export default {
+  filters: { currency },
+
   data () {
     return {
       amount: 23.61
@@ -25,9 +31,15 @@ export default {
       return this.amount < 0
     },
 
-    signedAmount () {
-      const sign = this.isNegative ? '-' : '+'
-      return `${sign} ${Math.abs(this.amount)}`
+    sign () {
+      return this.isNegative ? '-' : '+'
+    }
+  },
+
+  async mounted () {
+    const { amount } = await api('balance.fetch')
+    if (amount) {
+      this.amount = amount
     }
   }
 }

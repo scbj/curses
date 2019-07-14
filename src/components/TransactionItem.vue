@@ -1,10 +1,16 @@
 <template>
-  <div class="transaction-item">
+  <div
+    class="transaction-item"
+    :class="{ refunded: transaction.refunded }"
+  >
     <span class="label">{{ transaction.description }}</span>
     <span class="date">
       {{ transaction.date | calendar | capitalize }} par {{ username }}
     </span>
-    <span class="amount">{{ transaction.amount | currency }}</span>
+    <span
+      class="amount"
+      :class="{ negative: transaction.amount < 0 }"
+    >{{ transaction.amount | currency }} €</span>
   </div>
 </template>
 
@@ -44,6 +50,10 @@ export default {
   grid-gap: 3px;
   padding: 12px 17px;
   box-shadow: 0 4px 8px rgba(#779189, 0.15);
+
+  &.refunded .amount {
+    color: #323232;
+  }
 }
 
 .label {
@@ -67,8 +77,12 @@ export default {
   font-family: 'TT Commons';
   font-weight: 700;
   font-size: 18px;
-  color: #323232;
+  color: #23a665;
   grid-area: amount;
   align-self: center;
+
+  &.negative {
+    color: #e6402c;
+  }
 }
 </style>
