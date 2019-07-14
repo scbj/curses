@@ -41,7 +41,7 @@ export default {
   grid-template-areas:
     "label amount"
     "date amount";
-  grid-gap: 3px;
+  grid-gap: 5px;
   padding: 12px 17px;
   box-shadow: 0 4px 8px rgba(#779189, 0.15);
 

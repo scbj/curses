@@ -26,28 +26,7 @@ export default {
 
   data () {
     return {
-      transactions: [
-        {
-          label: 'Papier Toilette x16',
-          date: "Aujourd'hui par Flavien",
-          amount: '5,90 €'
-        },
-        {
-          label: 'Bières (x10)',
-          date: 'Hier par Romain',
-          amount: '9,88 €'
-        },
-        {
-          label: 'Sopalin (3 rouleaux)',
-          date: '2 juin par Romain',
-          amount: '2,60 €'
-        },
-        {
-          label: 'Papier Toilette x8',
-          date: '29 mai par Sacha',
-          amount: '3,18 €'
-        }
-      ]
+      transactions: []
     }
   },
 
@@ -65,6 +44,7 @@ export default {
   display: grid;
   grid-gap: 28px;
   margin-top: 21px;
+  margin-bottom: 100px;
 }
 
 .title {

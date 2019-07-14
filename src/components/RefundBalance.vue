@@ -42,10 +42,8 @@ export default {
 
   async mounted () {
     const { amount } = await api('balance.fetch')
-    if (amount) {
-      this.amount = amount
-      this.ready = true
-    }
+    this.amount = amount
+    this.ready = true
   }
 }
 </script>
