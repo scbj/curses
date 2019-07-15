@@ -19,12 +19,31 @@
 
     <RefundBalance />
     <TransactionList />
+    <div class="action-bar">
+      <button
+        class="add-button"
+        @click="openModal()"
+      >
+        <svgicon
+          icon="add"
+          color="#fff"
+          height="22"
+          width="22"
+        />
+      </button>
+    </div>
+    <ModalTransaction
+      v-show="modalOpened"
+      @close="closeModal()"
+    />
   </div>
 </template>
 
 <script>
 import '../assets/compiled-svg/user'
+import '../assets/compiled-svg/add'
 
+import ModalTransaction from '@/components/ModalTransaction'
 import RefundBalance from '@/components/RefundBalance'
 import TransactionList from '@/components/TransactionList'
 
@@ -32,24 +51,43 @@ export default {
   name: 'Home',
 
   components: {
+    ModalTransaction,
     RefundBalance,
     TransactionList
+  },
+
+  data () {
+    return {
+      modalOpened: false
+    }
   },
 
   methods: {
     logout () {
       this.$store.dispatch('logout')
+    },
+
+    openModal () {
+      const open = () => { this.modalOpened = true }
+      !this.modalOpened && open()
+    },
+
+    closeModal () {
+      this.modalOpened = false
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$easing: cubic-bezier(.165, .84, .44, 1);
+
 .home {
   display: grid;
   grid-template-columns: auto;
   grid-gap: 1.5rem;
   padding: 52px 32px 0 36px;
+  position: relative;
 }
 
 .logo,
@@ -68,5 +106,36 @@ export default {
 
 .refund-balance {
   grid-row: 2;
+}
+
+.action-bar {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.add-button {
+  background: #1abc8c;
+  border: none;
+  border-radius: 50%;
+  padding: 16px;
+  margin-bottom: 34px;
+  z-index: 10;
+  box-shadow: 0 5px 18px -2px rgba(#14916c, .68);
+  transition: transform 80ms $easing;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: scale(0.95);
+    transition-duration: 120ms;
+  }
 }
 </style>

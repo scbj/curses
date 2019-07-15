@@ -44,7 +44,7 @@ export default {
   display: grid;
   grid-gap: 28px;
   margin-top: 21px;
-  margin-bottom: 100px;
+  margin-bottom: 120px;
 }
 
 .title {
