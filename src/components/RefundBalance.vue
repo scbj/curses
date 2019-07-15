@@ -1,10 +1,12 @@
 <template>
-  <section class="refund-balance">
+  <section
+    v-show="ready"
+    class="refund-balance"
+  >
     <h3 class="label">
       Solde de remboursement :
     </h3>
     <span
-      v-if="ready"
       class="amount"
       :class="{ negative: isNegative }"
     >
