@@ -1,22 +1,23 @@
 {
   "name": "curses",
   "version": "0.1.0",
+  "description": "A Vue.js project to manage common expenses",
   "author": {
     "name": "Sacha",
     "email": "contact@scbj.io",
     "url": "https://scbj.io"
   },
-  "description": "A Vue.js project to manage common expenses",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:svg": "vsvg -s ./svg -t ./src/assets/compiled-svg",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "build:svg": "vsvg -s ./svg -t ./src/assets/compiled-svg",
     "clean": "rm -rf dist lambda node_modules"
   },
   "dependencies": {
     "core-js": "^2.6.5",
     "moment": "^2.24.0",
+    "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-plugin-pwa": "^3.9.0",
     "@vue/cli-service": "^3.8.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
