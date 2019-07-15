@@ -8,12 +8,19 @@
       @click.stop
     >
       <span class="title">Transaction</span>
+      <FormTransaction />
     </div>
   </div>
 </template>
 
 <script>
+import FormTransaction from '@/components/FormTransaction.vue'
+
 export default {
+  components: {
+    FormTransaction
+  },
+
   methods: {
     close (event) {
       this.$emit('close')
@@ -24,7 +31,7 @@ export default {
 
 <style lang="scss" scoped>
 .modal-transaction {
-  background: rgba(black, 0.26);
+  background: rgba(black, 0.5);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -32,8 +39,8 @@ export default {
 
   position: fixed;
   z-index: 100;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   top: 0;
   left: 0;
 }
@@ -55,5 +62,6 @@ export default {
   font-size: 38px;
   color: #114f30;
   align-self: center;
+  margin-bottom: 32px;
 }
 </style>
