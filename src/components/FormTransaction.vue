@@ -6,7 +6,6 @@
     <div class="date-picker">
       <span>Aujourd'hui</span>
       <input
-        ref="foo"
         type="date"
         name="date"
       >
@@ -14,12 +13,22 @@
 
     <label for="amount">Montant</label>
     <span class="amount">
-      <em>0</em> €
+      <EditableCurrencyAmount /> €
     </span>
 
     <label for="description">Description (60 caractères max.)</label>
   </form>
 </template>
+
+<script>
+import EditableCurrencyAmount from '@/components/EditableCurrencyAmount.vue'
+
+export default {
+  components: {
+    EditableCurrencyAmount
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .form-transaction {
@@ -42,6 +51,7 @@ label {
 
 .date-picker {
   position: relative;
+  align-self: flex-start;
 
   span {
     font-family: 'TT Commons';
@@ -66,7 +76,14 @@ label {
   color: #23a665;
 
   > em {
+    user-select: none;
     font-weight: 600;
+    color: transparent;
+    text-shadow: 0 0 0 #23a665;
+
+    &:focus {
+      outline: none;
+    }
   }
 }
 </style>

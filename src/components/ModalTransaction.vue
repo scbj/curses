@@ -53,7 +53,7 @@ export default {
   display: flex;
   flex-direction: column;
 
-  box-shadow: 0 -4px 16px rgba(#5e736c, 0.3);
+  box-shadow: 0 -4px 16px rgba(#5e736c, 1.0);
 }
 
 .title {
