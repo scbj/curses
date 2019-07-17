@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import routes from '@/router/routes'
 import { requiresAuth } from '@/router/middlewares/auth.js'
+import { requiresStandaloneMode } from '@/router/middlewares/pwa.js'
 
 Vue.use(Router)
 
@@ -14,5 +15,6 @@ const router = new Router({
 
 // We add the middleware so that all routes without exception go through the verification of authentication
 router.beforeEach(requiresAuth)
+router.beforeEach(requiresStandaloneMode({ name: 'install' }))
 
 export default router
