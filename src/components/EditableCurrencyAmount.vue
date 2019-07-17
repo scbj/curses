@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { currency } from '@/filters/number'
+
 /**
  * Format the specfied input to a number with two decimals.
  * @param {String} input
@@ -32,30 +34,18 @@ function formatAsHundredthAccuracyNumber (input, max = 999999) {
   // Return the value or the maxium value, divide by 100 to add decimals.
   return Math.min(value, max) / 100
 }
-/**
- * Convert specified value to a right currency value with two decimals. Default value is fr-FR in EUR.
- * @param {String} input
- * @param {Object} options
- * @param {String} options.locale
- * @param {String} options.currency
- * @returns {String}
- */
-function emendAsCurrency (input, { locale = 'fr-FR', currency = 'EUR' } = {}) {
-  const value = formatAsHundredthAccuracyNumber(input)
-  const options = {
-    currency,
-    style: 'currency'
-  }
-  return new Intl
-    .NumberFormat(locale, options)
-    .format(value)
-    .slice(0, -2)
-}
 
 export default {
   data () {
     return {
-      input: emendAsCurrency('0')
+      value: 0,
+      input: currency(0)
+    }
+  },
+
+  watch: {
+    value (value) {
+      this.$emit('change', value)
     }
   },
 
@@ -68,12 +58,17 @@ export default {
       // Change manually the input data
       event.preventDefault()
       const char = String.fromCharCode(event.keyCode || event.charCode)
-      this.input = emendAsCurrency(this.input + char)
+      this.updateInput(this.input + char)
       this.moveCursorToEnd()
     },
 
     onInput (event) {
-      this.input = emendAsCurrency(event.target.value)
+      this.updateInput(event.target.value)
+    },
+
+    updateInput (input) {
+      this.value = formatAsHundredthAccuracyNumber(input)
+      this.input = currency(this.value)
     }
   }
 }

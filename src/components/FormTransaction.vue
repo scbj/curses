@@ -4,8 +4,9 @@
       Date
     </label>
     <div class="date-picker">
-      <span>Aujourd'hui</span>
+      <span>{{ date | calendar | capitalize }}</span>
       <input
+        v-model="date"
         type="date"
         name="date"
       >
@@ -13,7 +14,7 @@
 
     <label for="amount">Montant</label>
     <span class="amount">
-      <EditableCurrencyAmount /> €
+      <EditableCurrencyAmount @change="amountChange" /> €
     </span>
 
     <label for="description">Description (60 caractères max.)</label>
@@ -22,10 +23,27 @@
 
 <script>
 import EditableCurrencyAmount from '@/components/EditableCurrencyAmount.vue'
+import { calendar } from '@/filters/date'
+import { capitalize } from '@/filters/string'
 
 export default {
+  filters: { calendar, capitalize },
+
   components: {
     EditableCurrencyAmount
+  },
+
+  data () {
+    return {
+      date: new Date(),
+      amount: 0
+    }
+  },
+
+  methods: {
+    amountChange (value) {
+      this.amount = value
+    }
   }
 }
 </script>

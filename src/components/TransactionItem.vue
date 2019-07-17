@@ -10,7 +10,7 @@
     <span
       class="amount"
       :class="{ negative: transaction.amount < 0 }"
-    >{{ transaction.amount | currency }} €</span>
+    >{{ transaction.amount | currency({ symbol: true }) }}</span>
   </div>
 </template>
 
