@@ -33,7 +33,7 @@
       </button>
     </div>
     <ModalTransaction
-      v-show="modalOpened"
+      v-if="modalOpened"
       @close="closeModal()"
     />
   </div>
