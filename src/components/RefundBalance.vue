@@ -20,8 +20,6 @@ import api from '@/services/api'
 
 import { currency } from '@/filters/number'
 
-window.api = api
-
 export default {
   filters: { currency },
 

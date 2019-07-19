@@ -7,7 +7,6 @@ netlifyIdentity.init({
   logo: true
 })
 
-window.identity = netlifyIdentity
 /**
  * Returns true if the user is connected.
  * @returns {Boolean}

@@ -4,7 +4,7 @@
       Transactions
     </h2>
     <ul class="list">
-      <template v-for="(transaction, index) in transactions">
+      <template v-for="(transaction, index) in sortedTransactions">
         <TransactionItem
           :key="index"
           :transaction="transaction"
@@ -18,6 +18,7 @@
 import TransactionItem from '@/components/TransactionItem'
 
 import api from '@/services/api'
+import { EventBus } from '@/reactivity/event-bus'
 
 export default {
   components: {
@@ -30,10 +31,34 @@ export default {
     }
   },
 
+  computed: {
+    sortedTransactions () {
+      const compare = (a, b) => {
+        const dateA = new Date(a.date)
+        const dateB = new Date(b.date)
+        if (dateA < dateB) { return 1 }
+        if (dateA > dateB) { return -1 }
+        return 0
+      }
+      return this.transactions.slice(0).sort(compare)
+    }
+  },
+
   async mounted () {
+    EventBus.$on('transaction.created', this.addTransaction)
     const transactions = await api('transaction.list')
     if (transactions) {
       this.transactions = transactions
+    }
+  },
+
+  beforeDestroy () {
+    EventBus.$off('transaction.created', this.addTransaction)
+  },
+
+  methods: {
+    addTransaction (transaction) {
+      this.transactions.push(transaction)
     }
   }
 }

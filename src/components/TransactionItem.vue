@@ -1,5 +1,5 @@
 <template>
-  <div
+  <li
     class="transaction-item"
     :class="{ refunded: transaction.refunded }"
   >
@@ -11,7 +11,7 @@
       class="amount"
       :class="{ negative: transaction.amount < 0 }"
     >{{ transaction.amount | currency({ symbol: true }) }}</span>
-  </div>
+  </li>
 </template>
 
 <script>
@@ -43,7 +43,7 @@ export default {
     "date amount";
   grid-gap: 5px;
   padding: 12px 17px;
-  box-shadow: 0 4px 8px rgba(#779189, 0.15);
+  box-shadow: 0 4px 10px -2px rgba(#779189, 0.15);
 
   &.refunded .amount {
     color: #323232;

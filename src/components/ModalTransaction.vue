@@ -1,14 +1,14 @@
 <template>
   <div
     class="modal-transaction"
-    @click="close($event)"
+    @click="close()"
   >
     <div
       class="card"
       @click.stop
     >
       <span class="title">Transaction</span>
-      <FormTransaction />
+      <FormTransaction @completed="close()" />
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
   },
 
   methods: {
-    close (event) {
+    close () {
       this.$emit('close')
     }
   }
@@ -60,7 +60,7 @@ export default {
   font-family: 'TT Commons';
   font-weight: 800;
   font-size: 38px;
-  color: #114f30;
+  color: #0c3b24;
   align-self: center;
   margin-bottom: 32px;
 }
