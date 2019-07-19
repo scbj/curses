@@ -3,6 +3,7 @@
     <input
       ref="input"
       v-model="input"
+      autofocus
       spellcheck="false"
       type="tel"
       @keydown="moveCursorToEnd()"
