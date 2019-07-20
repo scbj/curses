@@ -1,15 +1,19 @@
 import identity from '@/services/identity'
 import router from '@/router'
 
+function navigateToHomePage () {
+  router.push({ name: 'home' })
+}
+
 export default {
-  login ({ commit }) {
+  login ({ commit, state }) {
     identity.open('login')
     identity.on('login', user => {
       commit('SET_USER', user)
-      console.log('✔ Successfully logged in!')
       identity.close()
-      router.push({ name: 'home' })
+      navigateToHomePage()
     })
+    identity.on('close', () => state.user && navigateToHomePage())
   },
 
   logout ({ commit }) {
