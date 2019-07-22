@@ -1,8 +1,8 @@
 <template>
-  <div class="editable-currenct-amount">
+  <div class="editable-currency-amount">
     <input
       ref="input"
-      v-model="input"
+      :value="value"
       autofocus
       spellcheck="false"
       type="tel"
@@ -21,7 +21,7 @@ import { currency } from '@/filters/number'
  * Format the specfied input to a number with two decimals.
  * @param {String} input
  * @param {Number} [max]
- * @returns {String}
+ * @returns {Number}
  */
 function formatAsHundredthAccuracyNumber (input, max = 999999) {
   // Remove all characters. Keep only digits.
@@ -37,16 +37,16 @@ function formatAsHundredthAccuracyNumber (input, max = 999999) {
 }
 
 export default {
-  data () {
-    return {
-      value: 0,
-      input: currency(0)
+  props: {
+    value: {
+      type: Number,
+      required: true
     }
   },
 
-  watch: {
-    value (value) {
-      this.$emit('change', value)
+  computed: {
+    input () {
+      return currency(this.value)
     }
   },
 
@@ -68,15 +68,15 @@ export default {
     },
 
     updateInput (input) {
-      this.value = formatAsHundredthAccuracyNumber(input)
-      this.input = currency(this.value)
+      const value = formatAsHundredthAccuracyNumber(input)
+      this.$emit('input', value)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.editable-currenct-amount {
+.editable-currency-amount {
   display: inline-block;
   position: relative;
 

@@ -17,7 +17,7 @@
 
     <label for="amount">Montant</label>
     <span class="amount">
-      <EditableCurrencyAmount @change="amountChange" /> €
+      <EditableCurrencyAmount v-model="amount" /> €
     </span>
 
     <label for="description">Description (60 caractères max.)</label>
@@ -60,10 +60,6 @@ export default {
   },
 
   methods: {
-    amountChange (value) {
-      this.amount = value
-    },
-
     async validate (event) {
       // Prevent default behavior with form submit (POST navigation)
       event.preventDefault()
