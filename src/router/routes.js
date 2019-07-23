@@ -2,7 +2,14 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/Home.vue')
+    component: () => import('@/views/Home.vue'),
+    children: [
+      {
+        path: 'new',
+        name: 'newTransaction',
+        component: () => import('@/views/ModalTransaction.vue')
+      }
+    ]
   },
   {
     public: true,

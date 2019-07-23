@@ -32,9 +32,7 @@
         />
       </button>
     </div>
-    <ModalTransaction
-      v-if="modalOpened"
-      @close="closeModal()"
+    <router-view />
     />
   </div>
 </template>
@@ -43,7 +41,6 @@
 import '../assets/compiled-svg/user'
 import '../assets/compiled-svg/add'
 
-import ModalTransaction from '@/components/ModalTransaction'
 import RefundBalance from '@/components/RefundBalance'
 import TransactionList from '@/components/TransactionList'
 
@@ -51,15 +48,8 @@ export default {
   name: 'Home',
 
   components: {
-    ModalTransaction,
     RefundBalance,
     TransactionList
-  },
-
-  data () {
-    return {
-      modalOpened: false
-    }
   },
 
   methods: {
@@ -68,12 +58,7 @@ export default {
     },
 
     openModal () {
-      const open = () => { this.modalOpened = true }
-      !this.modalOpened && open()
-    },
-
-    closeModal () {
-      this.modalOpened = false
+      this.$router.push('new')
     }
   }
 }
