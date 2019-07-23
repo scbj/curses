@@ -1,7 +1,7 @@
 <template>
   <form
     class="form-transaction"
-    @submit="validate"
+    @submit="next"
   >
     <label for="date">
       Date
@@ -16,7 +16,10 @@
     </div>
 
     <label for="amount">Montant</label>
-    <span class="amount">
+    <span
+      ref="amount"
+      class="amount"
+    >
       <EditableCurrencyAmount
         v-model="amount"
         focus
@@ -25,13 +28,14 @@
 
     <label for="description">Description (60 caractères max.)</label>
     <input
+      ref="description"
       v-model="description"
       class="description"
       type="text"
       name="description"
     >
     <button
-      class="validate-button"
+      class="next-button"
       type="submit"
     >
       Ajouter la dépense
@@ -63,9 +67,20 @@ export default {
   },
 
   methods: {
-    async validate (event) {
+    async next (event) {
       // Prevent default behavior with form submit (POST navigation)
       event.preventDefault()
+
+      /** @returns {Element} */
+      const validate = () => {
+        if (this.amount === 0) return this.$refs.amount
+        else if (!this.description.trim()) return this.$refs.description
+      }
+
+      const errorElement = validate()
+      if (errorElement) {
+        return this.shake(errorElement)
+      }
 
       // Create the transaction with the specified data
       const transaction = await api('transaction.create', {
@@ -85,6 +100,20 @@ export default {
     resetAmountDescription () {
       this.amount = 0
       this.description = ''
+    },
+
+    shake (element) {
+      'animate' in element && element.animate([
+        { transform: 'translate(0.4em)' },
+        { transform: 'translate(-0.4em)' },
+        { transform: 'translate(0.2em)' },
+        { transform: 'translate(-0.2em)' },
+        { transform: 'translate(0.03em)' },
+        { transform: 'translate(0)' }
+      ], {
+        duration: 400,
+        easing: 'linear'
+      })
     }
   }
 }
@@ -179,7 +208,7 @@ input.description {
   }
 }
 
-.validate-button {
+.next-button {
   font-family: 'TT Commons';
   font-weight: 700;
   font-size: 18px;
