@@ -17,7 +17,10 @@
 
     <label for="amount">Montant</label>
     <span class="amount">
-      <EditableCurrencyAmount v-model="amount" /> €
+      <EditableCurrencyAmount
+        v-model="amount"
+        focus
+      /> €
     </span>
 
     <label for="description">Description (60 caractères max.)</label>

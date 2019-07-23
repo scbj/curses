@@ -19,6 +19,7 @@
 import api from '@/services/api'
 
 import { currency } from '@/filters/number'
+import { EventBus } from '@/reactivity/event-bus'
 
 export default {
   filters: { currency },
@@ -41,9 +42,20 @@ export default {
   },
 
   async mounted () {
+    EventBus.$on('transaction.created', this.updateAmount)
     const { amount } = await api('balance.fetch')
     this.amount = amount
     this.ready = true
+  },
+
+  beforeDestroy () {
+    EventBus.$off('transaction.created', this.updateAmount)
+  },
+
+  methods: {
+    updateAmount (transaction) {
+      this.amount += transaction.amount
+    }
   }
 }
 </script>

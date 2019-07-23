@@ -41,6 +41,10 @@ export default {
     value: {
       type: Number,
       required: true
+    },
+    focus: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -48,6 +52,10 @@ export default {
     input () {
       return currency(this.value)
     }
+  },
+
+  mounted () {
+    this.focus && this.$refs.input.focus()
   },
 
   methods: {
