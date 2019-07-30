@@ -1,8 +1,5 @@
 <template>
-  <section
-    v-show="ready"
-    class="refund-balance"
-  >
+  <section class="refund-balance">
     <h3 class="label">
       Solde de remboursement :
     </h3>
@@ -16,22 +13,16 @@
 </template>
 
 <script>
-import api from '@/services/api'
+import { get } from 'vuex-pathify'
 
 import { currency } from '@/filters/number'
-import { EventBus } from '@/reactivity/event-bus'
 
 export default {
   filters: { currency },
 
-  data () {
-    return {
-      amount: 0,
-      ready: false
-    }
-  },
-
   computed: {
+    amount: get('balance/amount'),
+
     isNegative () {
       return this.amount < 0
     },
@@ -42,20 +33,7 @@ export default {
   },
 
   async mounted () {
-    EventBus.$on('transaction.created', this.updateAmount)
-    const { amount } = await api('balance.fetch')
-    this.amount = amount
-    this.ready = true
-  },
-
-  beforeDestroy () {
-    EventBus.$off('transaction.created', this.updateAmount)
-  },
-
-  methods: {
-    updateAmount (transaction) {
-      this.amount += transaction.amount
-    }
+    this.$store.dispatch('balance/fetch')
   }
 }
 </script>

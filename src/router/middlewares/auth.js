@@ -2,7 +2,7 @@ import store from '@/store'
 import { publicRoutesNames } from '@/router/routes'
 
 export function requiresAuth (to, _, next) {
-  const isAuthenticated = store.get('isAuthenticated')
+  const isAuthenticated = store.get('auth/isAuthenticated')
   const isPublicRoute = publicRoutesNames.includes(to.name)
 
   /** If the route is not the login page and the user is authenticated

@@ -1,3 +1,5 @@
+import { make } from 'vuex-pathify'
+
 import identity from '@/services/identity'
 import router from '@/router'
 
@@ -5,7 +7,27 @@ function navigateToHomePage () {
   router.push({ name: 'home' })
 }
 
-export default {
+const state = {
+  user: identity.currentUser()
+}
+
+const getters = {
+  /**
+   * Returns true if the user is authenticated.
+   * @returns {Boolean}
+   */
+  isAuthenticated (state) {
+    return !!state.user
+  },
+
+  username (state) {
+    return state.user && state.user.user_metadata.full_name
+  }
+}
+
+const mutations = make.mutations(state)
+
+const actions = {
   login ({ commit, state }) {
     identity.open('login')
     identity.on('login', user => {
@@ -24,4 +46,12 @@ export default {
       .then(updateUser)
       .then(requestLogin)
   }
+}
+
+export default {
+  namespaced: true,
+  state,
+  getters,
+  mutations,
+  actions
 }

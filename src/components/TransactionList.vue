@@ -4,7 +4,7 @@
       Transactions
     </h2>
     <ul class="list">
-      <template v-for="(transaction, index) in sortedTransactions">
+      <template v-for="(transaction, index) in transactions">
         <TransactionItem
           :key="index"
           :transaction="transaction"
@@ -15,51 +15,21 @@
 </template>
 
 <script>
-import TransactionItem from '@/components/TransactionItem'
+import { get } from 'vuex-pathify'
 
-import api from '@/services/api'
-import { EventBus } from '@/reactivity/event-bus'
+import TransactionItem from '@/components/TransactionItem'
 
 export default {
   components: {
     TransactionItem
   },
 
-  data () {
-    return {
-      transactions: []
-    }
-  },
-
   computed: {
-    sortedTransactions () {
-      const compare = (a, b) => {
-        const dateA = new Date(a.date)
-        const dateB = new Date(b.date)
-        if (dateA < dateB) { return 1 }
-        if (dateA > dateB) { return -1 }
-        return 0
-      }
-      return this.transactions.slice(0).sort(compare)
-    }
+    transactions: get('transaction/sortedItems')
   },
 
   async mounted () {
-    EventBus.$on('transaction.created', this.addTransaction)
-    const transactions = await api('transaction.list')
-    if (transactions) {
-      this.transactions = transactions
-    }
-  },
-
-  beforeDestroy () {
-    EventBus.$off('transaction.created', this.addTransaction)
-  },
-
-  methods: {
-    addTransaction (transaction) {
-      this.transactions.push(transaction)
-    }
+    this.$store.dispatch('transaction/list')
   }
 }
 </script>

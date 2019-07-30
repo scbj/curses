@@ -48,8 +48,6 @@ import EditableCurrencyAmount from '@/components/EditableCurrencyAmount.vue'
 
 import { calendar } from '@/filters/date'
 import { capitalize } from '@/filters/string'
-import api from '@/services/api'
-import { EventBus } from '@/reactivity/event-bus'
 
 export default {
   filters: { calendar, capitalize },
@@ -83,16 +81,15 @@ export default {
       }
 
       // Create the transaction with the specified data
-      const transaction = await api('transaction.create', {
+      const success = this.$store.dispatch('transaction/create', {
         date: this.date,
         amount: this.amount,
         description: this.description
       })
 
-      // If it's a succes then reset some fields and emit events
-      if (transaction && transaction._id) {
+      // If it's a succes then reset some fields
+      if (success) {
         this.resetAmountDescription()
-        EventBus.$emit('transaction.created', transaction)
         this.$emit('completed')
       }
     },

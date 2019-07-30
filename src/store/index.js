@@ -1,37 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VuexPathify, { make } from 'vuex-pathify'
+import VuexPathify from 'vuex-pathify'
 
-import identity from '@/services/identity'
-import actions from '@/store/actions'
+import * as modules from '@/store/modules'
 
 Vue.use(Vuex)
 
-export const state = {
-  user: identity.currentUser()
-}
-
-export const getters = {
-  /**
- * Returns true if the user is authenticated.
- * @returns {Boolean}
- */
-  isAuthenticated (state) {
-    return !!state.user
-  },
-
-  username (state) {
-    return state.user && state.user.user_metadata.full_name
-  }
-}
-
-export const mutations = make.mutations(state)
-
 export default new Vuex.Store({
-  state,
-  getters,
-  actions,
-  mutations,
+  modules,
   plugins: [
     VuexPathify.plugin
   ]
