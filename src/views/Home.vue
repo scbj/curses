@@ -19,28 +19,15 @@
 
     <RefundBalance />
     <TransactionList />
-    <div class="action-bar">
-      <button
-        class="add-button"
-        @click="openModal()"
-      >
-        <svgicon
-          icon="add"
-          color="#fff"
-          height="22"
-          width="22"
-        />
-      </button>
-    </div>
+    <NavigationBar />
     <router-view />
-    />
   </div>
 </template>
 
 <script>
 import '../assets/compiled-svg/user'
-import '../assets/compiled-svg/add'
 
+import NavigationBar from '@/components/NavigationBar'
 import RefundBalance from '@/components/RefundBalance'
 import TransactionList from '@/components/TransactionList'
 
@@ -48,6 +35,7 @@ export default {
   name: 'Home',
 
   components: {
+    NavigationBar,
     RefundBalance,
     TransactionList
   },
@@ -55,18 +43,12 @@ export default {
   methods: {
     logout () {
       this.$store.dispatch('auth/logout')
-    },
-
-    openModal () {
-      this.$router.push('new')
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-$easing: cubic-bezier(.165, .84, .44, 1);
-
 .home {
   display: grid;
   grid-template-columns: auto;
@@ -93,34 +75,10 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   grid-row: 2;
 }
 
-.action-bar {
-  display: flex;
-  justify-content: center;
+.navigation-bar {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-}
-
-.add-button {
-  background: #1abc8c;
-  border: none;
-  border-radius: 50%;
-  padding: 16px;
-  margin-bottom: 34px;
-  z-index: 10;
-  box-shadow: 0 5px 18px -2px rgba(#14916c, .68);
-  transition: transform 80ms $easing;
-
-  &:hover,
-  &:active,
-  &:focus {
-    outline: none;
-  }
-
-  &:active {
-    transform: scale(0.95);
-    transition-duration: 120ms;
-  }
 }
 </style>
