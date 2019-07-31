@@ -6,7 +6,7 @@ export default {
     const [ result ] = await Transaction.aggregate([
       {
         $match: {
-          owner: req.user.user_metadata.full_name,
+          owner: req.user.username,
           refunded: false
         }
       },

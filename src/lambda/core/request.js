@@ -1,3 +1,5 @@
+import { createUser } from './utils/identity'
+
 /**
  * Create a request object from the event object pass to function handler.
  * @param {Object} event The AWS Lambda event object
@@ -12,6 +14,7 @@ export function createRequest (event, context) {
   } = event
 
   const { clientContext } = context
+  const user = createUser(clientContext)
 
   /**
    * Returns the specified HTTP request header field (case-insensitive match).
@@ -46,8 +49,9 @@ export function createRequest (event, context) {
     headers,
     path,
     method: httpMethod,
-    user: clientContext.user,
+    user,
 
+    // Functions :
     getHeader
   }
 }

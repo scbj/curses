@@ -1,4 +1,4 @@
-import { authenticate } from './middlewares/auth'
+import { authenticate, requiredRoles } from './middlewares/auth'
 import Transaction from './models/Transaction'
 
 /**
@@ -39,7 +39,7 @@ export default {
 
     Object.assign(params, {
       date: new Date(params.date),
-      owner: req.user.user_metadata.full_name
+      owner: req.user.username
     })
 
     // Create a Transaction from the specified params
@@ -56,5 +56,10 @@ export default {
   list: authenticate(async (req, res) => {
     const transactions = await Transaction.find().sort({ date: -1 })
     return res.json(transactions)
-  })
+  }),
+
+  drop: authenticate(requiredRoles([ 'dropCollection' ], async (req, res) => {
+    const result = await Transaction.deleteMany({})
+    return res.json(result)
+  }))
 }

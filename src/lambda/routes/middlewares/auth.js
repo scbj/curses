@@ -3,8 +3,23 @@ export function authenticate (next) {
     // All routes need to be authenticated
     const isAuthenticated = !!req.user
     if (!isAuthenticated) {
-      return res.sendStatus(403)
+      return res.sendStatus(401)
     }
     return next(req, res)
+  }
+}
+
+/**
+ * Restrict access by only allowing users who have specified roles.
+ * @param {Array<String>} roles
+ * @param {Function} next
+ */
+export function requiredRoles (roles, next) {
+  return (req, res) => {
+    const userRoles = req.user.roles
+    const meetsRequiredRoles = roles.every(role => userRoles.includes(role))
+    return meetsRequiredRoles
+      ? next(req, res)
+      : res.sendStatus(403)
   }
 }
