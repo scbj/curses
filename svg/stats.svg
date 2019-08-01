@@ -1,0 +1,7 @@
+<svg id="Stats" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="Group-26" transform="translate(3 3)">
+    <path id="Stroke-278" d="M25,26.037H21a1,1,0,0,1-1-1v-17a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1v17A1,1,0,0,1,25,26.037Z" fill="none" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill-rule="evenodd"/>
+    <path id="Stroke-280" d="M15,26.037H11a1,1,0,0,1-1-1V1a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1V25.037A1,1,0,0,1,15,26.037Z" fill="none" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill-rule="evenodd"/>
+    <path id="Stroke-282" d="M5,26.037H1a1,1,0,0,1-1-1v-10a1,1,0,0,1,1-1H5a1,1,0,0,1,1,1v10A1,1,0,0,1,5,26.037Z" fill="none" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill-rule="evenodd"/>
+  </g>
+</svg>

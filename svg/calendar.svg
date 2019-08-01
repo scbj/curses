@@ -1,0 +1,12 @@
+<svg id="Calendar-5" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="Group-5-Copy-2" transform="translate(4 3)">
+    <g id="Groupe_56" data-name="Groupe 56" transform="translate(0 2)">
+      <path id="Tracé_284" data-name="Tracé 284" d="M6,24H22.9A2.03,2.03,0,0,0,25,22v-.2l-1.8-20A2.072,2.072,0,0,0,21.1,0" fill="none" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Tracé_285" data-name="Tracé 285" d="M3.8,0H21a2.006,2.006,0,0,1,2,2v.2l-1.8,20a2.046,2.046,0,0,1-2,1.8H2a2.006,2.006,0,0,1-2-2v-.2l1.8-20A1.973,1.973,0,0,1,3.8,0Z" fill="none" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Tracé_286" data-name="Tracé 286" d="M9,18.5h4.2" fill="none" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Tracé_287" data-name="Tracé 287" d="M8,10.7l1.8,2.8,5.7-5.7" fill="none" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+    <path id="Tracé_288" data-name="Tracé 288" d="M8,5A1.028,1.028,0,0,1,7,3.9V1.1a1,1,0,1,1,2,0" fill="none" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Tracé_289" data-name="Tracé 289" d="M16,5a1.028,1.028,0,0,1-1-1.1V1.1a1,1,0,1,1,2,0" fill="none" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

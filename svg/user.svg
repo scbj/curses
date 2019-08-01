@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="41.369" height="41.369" viewBox="0 0 41.369 41.369">
-    <circle cx="18.099" cy="18.099" r="18.099" fill="none" stroke="#405348" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" transform="translate(2.586 2.586)"/>
-    <circle cx="5.171" cy="5.171" r="5.171" fill="none" stroke="#405348" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" transform="translate(15.513 11.635)"/>
-    <path fill="none" stroke="#405348" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M8.007,28.757C7.619,23.586,11.109,21,18.349,21s10.73,2.586,10.342,7.757" transform="translate(2.336 6.148)"/>
+<svg id="User" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <circle id="Ellipse_32" data-name="Ellipse 32" cx="14" cy="14" r="14" transform="translate(2 2)" stroke-width="2" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle id="Ellipse_33" data-name="Ellipse 33" cx="4" cy="4" r="4" transform="translate(12 9)" stroke-width="2" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path id="Tracé_198" data-name="Tracé 198" d="M8,27c-.3-4,2.4-6,8-6s8.3,2,8,6" fill="none" stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
 </svg>

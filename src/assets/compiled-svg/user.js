@@ -2,9 +2,9 @@
 var icon = require('vue-svgicon')
 icon.register({
   'user': {
-    width: 41.369,
-    height: 41.369,
-    viewBox: '0 0 41.369 41.369',
-    data: '<circle pid="0" cx="18.099" cy="18.099" r="18.099" _fill="none" _stroke="#405348" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" transform="translate(2.586 2.586)"/><circle pid="1" cx="5.171" cy="5.171" r="5.171" _fill="none" _stroke="#405348" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" transform="translate(15.513 11.635)"/><path pid="2" _fill="none" _stroke="#405348" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10.343 34.905c-.388-5.171 3.102-7.757 10.342-7.757s10.73 2.586 10.342 7.757"/>'
+    width: 32,
+    height: 32,
+    viewBox: '0 0 32 32',
+    data: '<circle pid="0" data-name="Ellipse 32" cx="14" cy="14" r="14" transform="translate(2 2)" stroke-width="2" _stroke="#404853" stroke-linecap="round" stroke-linejoin="round" _fill="none"/><circle pid="1" data-name="Ellipse 33" cx="4" cy="4" r="4" transform="translate(12 9)" stroke-width="2" _stroke="#404853" stroke-linecap="round" stroke-linejoin="round" _fill="none"/><path pid="2" data-name="Tracé 198" d="M8 27c-.3-4 2.4-6 8-6s8.3 2 8 6" _fill="none" _stroke="#404853" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>'
   }
 })
