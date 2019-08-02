@@ -46,7 +46,7 @@ export default {
 }
 
 .card {
-  background: #f5f5f5;
+  background: var(--background-color);
   border-radius: 12px 12px 0 0;
 
   padding: 30px 34px;

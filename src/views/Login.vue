@@ -41,13 +41,13 @@ button {
   font-weight: 700;
   font-size: 18px;
   color: white;
-  background: #1abc8c;
+  background: var(--highlight-color);
   border: none;
   border-radius: 6px;
   outline: none;
   font-size: inherit;
   cursor: pointer;
-  box-shadow: 0px 4px 8px -3px rgba(#14916c, 38%);
+  box-shadow: 0px 4px 8px -3px var(--highlight-color);
   padding: 15px;
   justify-self: stretch;
 }
