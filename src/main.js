@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import api from '@/services/api'
 import './registerServiceWorker'
+import '@/assets/compiled-svg'
 
 Vue.config.productionTip = false
 

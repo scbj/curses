@@ -10,6 +10,10 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
+
+  // Automatically adds the specified class when a route matches that of a router-link
+  linkActiveClass: 'active',
+  linkExactActiveClass: 'exact-active',
   routes
 })
 

@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import '../assets/compiled-svg/arrow'
-
 export default {
 
 }
@@ -28,7 +26,7 @@ export default {
 }
 
 .svg-icon {
-  fill: #23a665;
+  fill: var(--highlight-color);
   stroke: none;
   justify-self: flex-end;
   align-self: flex-start;
@@ -44,7 +42,7 @@ export default {
 
   em {
     font-weight: 700;
-    color: #23a665;
+    color: var(--highlight-color);
   }
 }
 </style>

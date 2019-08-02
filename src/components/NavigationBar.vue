@@ -13,13 +13,18 @@
         />
       </button>
     </div>
+    <NavigationBarList />
   </div>
 </template>
 
 <script>
-import '@/assets/compiled-svg/add'
+import NavigationBarList from '@/components/NavigationBarList'
 
 export default {
+  components: {
+    NavigationBarList
+  },
+
   methods: {
     openModal () {
       this.$router.push('new')
@@ -33,9 +38,6 @@ $easing: cubic-bezier(.165, .84, .44, 1);
 
 .navigation-bar {
   background: #f7f7f7;
-  display: flex;
-  justify-content: center;
-  height: 3.6rem;
   position: relative;
   z-index: 10;
 }
@@ -47,7 +49,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   transform: translateX(-50%) translateY(-40%);
 
   .add-button {
-    background: #1abc8c;
+    background: var(--highlight-color);
     border: none;
     border-radius: 50%;
     padding: 19px;

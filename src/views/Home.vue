@@ -1,22 +1,5 @@
 <template>
   <div class="home">
-    <img
-      class="logo"
-      alt="Vue logo"
-      src="../assets/images/title.svg"
-    >
-    <figure
-      class="profile"
-      @click="logout()"
-    >
-      <svgicon
-        icon="user"
-        color="#405348"
-        height="36.2"
-        width="36.2"
-      />
-    </figure>
-
     <RefundBalance />
     <TransactionList />
     <NavigationBar />
@@ -25,8 +8,6 @@
 </template>
 
 <script>
-import '../assets/compiled-svg/user'
-
 import NavigationBar from '@/components/NavigationBar'
 import RefundBalance from '@/components/RefundBalance'
 import TransactionList from '@/components/TransactionList'
