@@ -40,14 +40,12 @@ export default {
 
 <style lang="scss" scoped>
 .label {
-  font-family: 'TT Commons';
   font-weight: 500;
   font-size: 18px;
   color: #323232;
 }
 
 .amount {
-  font-family: 'TT Commons';
   font-weight: 300;
   font-size: 52px;
   color: #23a665;

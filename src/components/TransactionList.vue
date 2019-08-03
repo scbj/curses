@@ -43,7 +43,6 @@ export default {
 }
 
 .title {
-  font-family: 'TT Commons';
   font-weight: 400;
   font-size: 28px;
   color: #323232;

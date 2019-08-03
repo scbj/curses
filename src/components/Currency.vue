@@ -63,10 +63,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.currency {
-  font-family: 'TT Commons';
-}
-
 .sign,
 .integers,
 .symbol {

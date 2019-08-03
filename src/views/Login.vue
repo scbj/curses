@@ -37,7 +37,6 @@ img {
 }
 
 button {
-  font-family: 'TT Commons';
   font-weight: 700;
   font-size: 18px;
   color: white;

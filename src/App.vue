@@ -20,5 +20,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   background: var(--background-color);
+  font-family: 'TT Commons';
 }
 </style>

@@ -123,7 +123,6 @@ export default {
 }
 
 label {
-  font-family: 'TT Commons';
   font-weight: 700;
   font-size: 18px;
   color: #323232;
@@ -140,7 +139,6 @@ label {
   align-self: flex-start;
 
   span {
-    font-family: 'TT Commons';
     font-weight: 500;
     font-size: 18px;
     color: #23a665;
@@ -156,7 +154,6 @@ label {
 }
 
 .amount {
-  font-family: 'TT Commons';
   font-weight: 300;
   font-size: 52px;
   color: #23a665;
@@ -174,7 +171,6 @@ label {
 }
 
 input.description {
-  font-family: 'TT Commons';
   font-weight: 500;
   font-size: 18px;
   color: #0c3b24;
@@ -206,7 +202,6 @@ input.description {
 }
 
 .next-button {
-  font-family: 'TT Commons';
   font-weight: 700;
   font-size: 18px;
   color: white;

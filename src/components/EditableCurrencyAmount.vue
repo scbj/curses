@@ -90,7 +90,6 @@ export default {
 
   span,
   input {
-    font-family: 'TT Commons';
     font-weight: 600;
     font-size: 52px;
     color: #23a665;

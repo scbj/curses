@@ -51,7 +51,6 @@ export default {
 }
 
 .label {
-  font-family: 'TT Commons';
   font-weight: 500;
   font-size: 18px;
   color: #323232;
@@ -59,7 +58,6 @@ export default {
 }
 
 .date {
-  font-family: 'TT Commons';
   font-weight: 500;
   font-size: 14px;
   color: #323232;
@@ -68,7 +66,6 @@ export default {
 }
 
 .amount {
-  font-family: 'TT Commons';
   font-weight: 700;
   font-size: 18px;
   color: #23a665;
