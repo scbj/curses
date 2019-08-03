@@ -1,18 +1,24 @@
 <script>
+import Currency from '@/components/Currency'
 import RefundBalance from '@/components/RefundBalance'
 import TransactionList from '@/components/TransactionList'
 
 export default {
   name: 'Home',
 
-  components: {
-    RefundBalance,
-    TransactionList
+  data () {
+    return {
+      balanceAmount: 12.75
+    }
   },
 
   render (h) {
     return (
       <div class="home">
+        <Currency
+          value={this.balanceAmount}
+          fontSizes={[ '36px', '29px' ]}
+          fontWeights={[ 600, 500 ]} />
         <RefundBalance />
         <TransactionList />
       </div>
@@ -46,5 +52,21 @@ export default {
 
 .refund-balance {
   grid-row: 2;
+}
+
+.balance .sign {
+  color: red;
+}
+
+.balance {
+  .sign {
+    color: green;
+  }
+  .integers {
+    color: red;
+  }
+  .decimals {
+    color: blue;
+  }
 }
 </style>
