@@ -27,7 +27,7 @@ export default {
 
   methods: {
     openModal () {
-      this.$router.push('new')
+      this.$router.push({ name: 'home.create' })
     }
   }
 }

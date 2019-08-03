@@ -33,9 +33,9 @@ export default {
   height: 35px;
   width: 35px;
 
-  // &.active svg {
-  //   stroke: var(--highlight-color)
-  // }
+  &.active svg {
+    stroke: var(--highlight-color)
+  }
 
   svg {
     stroke: #8090b2;

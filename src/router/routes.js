@@ -1,26 +1,58 @@
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/Home.vue'),
+    name: 'main',
+    component: () => import('@/views/Main.vue'),
+    redirect: '/home',
     children: [
       {
-        path: 'new',
-        name: 'newTransaction',
-        component: () => import('@/views/ModalTransaction.vue')
+        path: 'home',
+        name: 'home',
+        components: {
+          page: () => import('@/views/Home.vue')
+        }
+      },
+      {
+        path: 'home/create',
+        name: 'home.create',
+        components: {
+          page: () => import('@/views/Home.vue'),
+          modal: () => import('@/views/ModalTransaction.vue')
+        }
+      },
+      {
+        path: 'stats',
+        name: 'stats',
+        components: {
+          page: () => import('@/views/Stats.vue')
+        }
+      },
+      {
+        path: 'activity',
+        name: 'activity',
+        components: {
+          page: () => import('@/views/Activity.vue')
+        }
+      },
+      {
+        path: 'account',
+        name: 'account',
+        components: {
+          page: () => import('@/views/Account.vue')
+        }
       }
     ]
   },
   {
-    public: true,
     path: '/login',
     name: 'login',
+    public: true,
     component: () => import('@/views/Login.vue')
   },
   {
-    public: true,
     path: '/install',
     name: 'install',
+    public: true,
     component: () => import('@/views/NotStandalone.vue')
   }
 ]

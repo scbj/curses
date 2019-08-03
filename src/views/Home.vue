@@ -1,14 +1,4 @@
-<template>
-  <div class="home">
-    <RefundBalance />
-    <TransactionList />
-    <NavigationBar />
-    <router-view />
-  </div>
-</template>
-
 <script>
-import NavigationBar from '@/components/NavigationBar'
 import RefundBalance from '@/components/RefundBalance'
 import TransactionList from '@/components/TransactionList'
 
@@ -16,15 +6,17 @@ export default {
   name: 'Home',
 
   components: {
-    NavigationBar,
     RefundBalance,
     TransactionList
   },
 
-  methods: {
-    logout () {
-      this.$store.dispatch('auth/logout')
-    }
+  render (h) {
+    return (
+      <div class="home">
+        <RefundBalance />
+        <TransactionList />
+      </div>
+    )
   }
 }
 </script>
@@ -54,12 +46,5 @@ export default {
 
 .refund-balance {
   grid-row: 2;
-}
-
-.navigation-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 </style>
