@@ -107,7 +107,6 @@ export default {
   span {
     position: relative;
     pointer-events: none;
-    user-select: none;
   }
 }
 </style>

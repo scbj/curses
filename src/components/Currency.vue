@@ -22,18 +22,20 @@ export default {
   computed: {
     /**
      * Returns only the integers of the value.
-     * @returns {Number}
+     * @returns {String}
      */
     integers () {
-      return Math.floor(this.value)
+      return String(Math.floor(this.value))
     },
 
     /**
      * Returns only the decimals of the value.
-     * @returns {Number}
+     * @returns {String}
      */
     decimals () {
-      return (this.value - this.integers) * 100
+      return parseFloat(this.value)
+        .toFixed(2)
+        .replace(/^[-\d]+\./, '')
     },
 
     cssVariables () {
@@ -64,14 +66,22 @@ export default {
 
 <style lang="scss" scoped>
 .sign,
+.integers {
+  font-size: var(--font-size-1);
+}
+
+.decimals,
+.symbol {
+  font-size: var(--font-size-2);
+}
+
+.sign,
 .integers,
 .symbol {
-  font-size: var(--font-size-1);
   font-weight: var(--font-weight-1);
 }
 
 .decimals {
-  font-size: var(--font-size-2);
   font-weight: var(--font-weight-2);
 }
 </style>

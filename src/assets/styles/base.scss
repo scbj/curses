@@ -6,6 +6,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 body {
@@ -32,6 +33,27 @@ a:visited {
 }
 
 button,
-input {
+input,
+a {
   font-family: 'TT Commons';
+
+  &.text-button {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--highlight-color);
+    background: none;
+    border: none;
+    outline: none;
+
+    &:focus,
+    &:visited,
+    &:hover,
+    &:active {
+      outline: none;
+    }
+
+    &:active {
+      opacity: .4;
+    }
+  }
 }

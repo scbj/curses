@@ -31,7 +31,10 @@ export default {
   display: grid;
   grid-template-columns: auto;
   grid-gap: 1.5rem;
-  padding: 52px 32px 0 36px;
   position: relative;
+}
+
+.balance {
+  margin-top: 52px;
 }
 </style>

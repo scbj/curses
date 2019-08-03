@@ -159,7 +159,6 @@ label {
   color: #23a665;
 
   > em {
-    user-select: none;
     font-weight: 600;
     color: transparent;
     text-shadow: 0 0 0 #23a665;

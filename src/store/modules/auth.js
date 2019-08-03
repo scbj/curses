@@ -3,10 +3,6 @@ import { make } from 'vuex-pathify'
 import identity from '@/services/identity'
 import router from '@/router'
 
-function navigateToHomePage () {
-  router.push({ name: 'home' })
-}
-
 const state = {
   user: identity.currentUser()
 }
@@ -29,6 +25,7 @@ const mutations = make.mutations(state)
 
 const actions = {
   login ({ commit, state }) {
+    const navigateToHomePage = () => router.push({ name: 'home' })
     identity.open('login')
     identity.on('login', user => {
       commit('SET_USER', user)
