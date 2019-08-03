@@ -5,7 +5,9 @@ export default {
   render (h) {
     return (
       <div class="main">
-        <RouterView name="page" />
+        <KeepAlive>
+          <RouterView name="page" />
+        </KeepAlive>
         <NavigationBar />
         <RouterView name="modal" />
       </div>

@@ -19,6 +19,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  color: var(--text-color);
   background: var(--background-color);
   font-family: 'TT Commons';
 }
