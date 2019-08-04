@@ -9,7 +9,7 @@
   >
     <span class="label">{{ transaction.description }}</span>
     <span class="date">
-      {{ transaction.date | calendar | capitalize }} par {{ transaction.owner }}
+      {{ transaction.date | calendar | capitalize }} par {{ owner }}
     </span>
     <Currency
       class="amount"
@@ -49,6 +49,10 @@ export default {
 
     isOwnTransaction () {
       return this.username === this.transaction.owner
+    },
+
+    owner () {
+      return this.isOwnTransaction ? 'Moi' : this.transaction.owner
     }
   },
 

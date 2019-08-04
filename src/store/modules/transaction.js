@@ -3,19 +3,37 @@ import { make } from 'vuex-pathify'
 import api from '@/services/api'
 
 const state = {
-  items: []
+  items: [],
+  activeFilter: 'all'
 }
 
 const getters = {
-  sortedItems (state) {
-    const compare = (a, b) => {
-      const dateA = new Date(a.date)
-      const dateB = new Date(b.date)
-      if (dateA < dateB) { return 1 }
-      if (dateA > dateB) { return -1 }
-      return 0
+  /**
+   * Returns the unrefunded transactions.
+   * @returns {Array}
+   */
+  unrefundedItems (state) {
+    const unrefunded = item => item.refunded === false
+    return state.items.filter(unrefunded)
+  },
+
+  /**
+   * Returns the unrefunded transaction count.
+   * @returns {Number}
+   */
+  unrefundedCount (state, getters) {
+    return getters.unrefundedItems.length
+  },
+
+  /**
+   * Returns a transaction list based on the active filter.
+   * @returns {Array}
+   */
+  filteredItems (state, getters) {
+    if (state.activeFilter === 'unrefunded') {
+      return getters.unrefundedItems
     }
-    return state.items.slice(0).sort(compare)
+    return state.items
   }
 }
 

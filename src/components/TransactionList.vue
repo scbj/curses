@@ -20,7 +20,7 @@ export default {
   },
 
   computed: {
-    transactions: get('transaction/sortedItems')
+    transactions: get('transaction/filteredItems')
   },
 
   async mounted () {

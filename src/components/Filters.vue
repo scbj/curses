@@ -1,12 +1,7 @@
 <script>
-export default {
-  data () {
-    return {
-      ownTransactionCount: 7,
-      activeFilter: 'all'
-    }
-  },
+import { get, sync } from 'vuex-pathify'
 
+export default {
   computed: {
     filters () {
       return [
@@ -15,11 +10,14 @@ export default {
           label: 'Tous'
         },
         {
-          name: 'waiting',
-          label: `En attente (${this.ownTransactionCount})`
+          name: 'unrefunded',
+          label: `En attente (${this.unrefundedCount})`
         }
       ]
-    }
+    },
+
+    unrefundedCount: get('transaction/unrefundedCount'),
+    activeFilter: sync('transaction/activeFilter')
   },
 
   methods: {
