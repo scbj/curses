@@ -3,6 +3,7 @@ export function authenticate (next) {
     // All routes need to be authenticated
     const isAuthenticated = !!req.user
     if (!isAuthenticated) {
+      console.log('A user was not allowed', req.user)
       return res.sendStatus(401)
     }
     return next(req, res)
