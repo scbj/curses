@@ -1,12 +1,11 @@
 <script>
+import { get } from 'vuex-pathify'
+
 import Currency from '@/components/Currency'
 
 export default {
-  props: {
-    amount: {
-      type: Number,
-      required: true
-    }
+  computed: {
+    amount: get('balance/selfAmount')
   },
 
   render (h) {

@@ -1,47 +1,32 @@
 <script>
+import { get } from 'vuex-pathify'
+
 import DistributionBalance from '@/components/DistributionBalance'
 import DistributionChart from '@/components/DistributionChart'
 import TextButton from '@/components/TextButton'
 
 export default {
-  data () {
-    return {
-      // Fake data for development purpose
-      balances: [
-        {
-          user: 'Moi',
-          amount: 27
-        },
-        {
-          user: 'Rick',
-          amount: 64.9
-        },
-        {
-          user: 'John',
-          amount: 16.29
-        }
-      ]
-    }
-  },
-
   computed: {
-    /**
-     * Returns the balances total.
-     * @returns {Number}
-     */
-    total () {
-      return this.balances
-        .reduce((total, { amount }, index) => total + amount, 0)
-    },
+    selfAmount: get('balance/selfAmount'),
+    total: get('balance/totalAmount'),
+    balances: get('balance/items'),
+    username: get('auth/username'),
 
     /**
      * Returns an array of string represents the percentages
      * of each balance in the relation to the total.
      */
     percents () {
+      const balances = this.balances.slice().sort((a, b) => {
+        return a.owner === this.username ? -1 : b.owner === this.username ? 1 : 0
+      })
       const asPercent = ({ amount }) => `${100 * amount / this.total}%`
-      return this.balances.map(asPercent)
+      return balances.map(asPercent)
     }
+  },
+
+  mounted () {
+    this.$store.dispatch('balance/list')
   },
 
   render (h) {
@@ -51,11 +36,11 @@ export default {
         <DistributionChart class="chart" percents={this.percents} />
         <DistributionBalance
           class="own"
-          amount={27}
+          amount={this.selfAmount}
           description="POUR MOI" />
         <DistributionBalance
           class="total"
-          amount={27}
+          amount={this.total}
           description="TOTAL A REMBOURSER" />
         <TextButton class="button-see-more" route={{ name: 'stats' }}>Voir le détail</TextButton>
       </div>

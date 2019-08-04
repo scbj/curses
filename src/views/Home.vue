@@ -16,7 +16,7 @@ export default {
   render (h) {
     return (
       <div class="home">
-        <Balance amount={this.balanceAmount} />
+        <Balance />
         <Distribution />
         <Filters />
         <TransactionList />

@@ -2,32 +2,11 @@ import { authenticate } from './middlewares/auth'
 import Transaction from './models/Transaction'
 
 export default {
-  fetch: authenticate(async (req, res) => {
-    const [ result ] = await Transaction.aggregate([
-      {
-        $match: {
-          owner: req.user.username,
-          refunded: false
-        }
-      },
-      {
-        $project: {
-          amount: 1
-        }
-      },
-      {
-        $group: {
-          _id: null,
-          amount: {
-            $sum: '$amount'
-          }
-        }
-      }
-    ])
-    const amount = result ? result.amount : 0
-
-    return res.json({
-      amount
-    })
+  list: authenticate(async (req, res) => {
+    const balances = await Transaction.aggregate([
+      { $match: { refunded: false } },
+      { $group: { _id: '$owner', owner: { $first: '$owner' }, amount: { $sum: '$amount' } } }
+    ]).sort({ owner: 1 })
+    return res.json(balances)
   })
 }
