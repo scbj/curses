@@ -87,6 +87,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
 
   &:active {
     opacity: .2;
+    transition-duration: 0s;
   }
 }
 
