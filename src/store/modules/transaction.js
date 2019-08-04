@@ -24,7 +24,7 @@ const mutations = make.mutations(state)
 const actions = {
   async list ({ commit }) {
     const transactions = await api('transaction.list')
-    if (transactions) {
+    if (transactions && transactions.length) {
       commit('SET_ITEMS', transactions)
     }
   },
