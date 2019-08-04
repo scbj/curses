@@ -2,7 +2,6 @@
 import Balance from '@/components/Balance'
 import Distribution from '@/components/Distribution'
 import Filters from '@/components/Filters'
-import RefundBalance from '@/components/RefundBalance'
 import TransactionList from '@/components/TransactionList'
 
 export default {
@@ -20,7 +19,6 @@ export default {
         <Balance amount={this.balanceAmount} />
         <Distribution />
         <Filters />
-        <RefundBalance />
         <TransactionList />
       </div>
     )
@@ -32,8 +30,9 @@ export default {
 .home {
   display: grid;
   grid-template-columns: auto;
-  grid-gap: 1.5rem;
+  grid-gap: 18px;
   position: relative;
+  padding-bottom: 70px;
 }
 
 .balance {

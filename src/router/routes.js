@@ -21,6 +21,14 @@ const routes = [
         }
       },
       {
+        path: 'home/edit',
+        name: 'home.edit',
+        components: {
+          page: () => import('@/views/Home.vue'),
+          modal: () => import('@/views/ModalTransaction.vue')
+        }
+      },
+      {
         path: 'stats',
         name: 'stats',
         components: {

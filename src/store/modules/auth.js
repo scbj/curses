@@ -17,7 +17,7 @@ const getters = {
   },
 
   username (state) {
-    return state.user && state.user.username
+    return state.user && state.user.user_metadata.full_name
   }
 }
 
