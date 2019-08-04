@@ -1,6 +1,7 @@
 <script>
 import Balance from '@/components/Balance'
 import Distribution from '@/components/Distribution'
+import Filters from '@/components/Filters'
 import RefundBalance from '@/components/RefundBalance'
 import TransactionList from '@/components/TransactionList'
 
@@ -18,6 +19,7 @@ export default {
       <div class="home">
         <Balance amount={this.balanceAmount} />
         <Distribution />
+        <Filters />
         <RefundBalance />
         <TransactionList />
       </div>
@@ -36,5 +38,9 @@ export default {
 
 .balance {
   margin-top: 52px;
+}
+
+.filters {
+  margin: 0 17px;
 }
 </style>
