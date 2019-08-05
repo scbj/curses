@@ -46,7 +46,11 @@ const actions = {
     }
   },
 
-  incrementSelf ({ state, getters, commit }, payload) {
+  incrementSelf ({ state, getters, commit, dispatch }, payload) {
+    if (!getters.self) {
+      return dispatch('list')
+    }
+
     const balance = getters.self
     const otherBalances = state.items.filter(item => item.owner !== balance.owner)
     balance.amount += payload.value
