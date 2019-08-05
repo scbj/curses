@@ -59,7 +59,6 @@ export default {
 .title {
   font-weight: 800;
   font-size: 38px;
-  color: #0c3b24;
   align-self: center;
   margin-bottom: 32px;
 }

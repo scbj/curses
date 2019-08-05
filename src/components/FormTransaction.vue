@@ -100,7 +100,15 @@ export default {
     },
 
     shake (element) {
-      'animate' in element && element.animate([
+      element.animate([
+        { borderColor: '#fb4b4b' },
+        { borderColor: '#fb4b4b' },
+        { borderColor: 'transparent' }
+      ], {
+        duration: 600,
+        easing: 'ease-out'
+      })
+      element.animate([
         { transform: 'translate(0.4em)' },
         { transform: 'translate(-0.4em)' },
         { transform: 'translate(0.2em)' },
@@ -125,7 +133,6 @@ export default {
 label {
   font-weight: 700;
   font-size: 18px;
-  color: #323232;
   margin-bottom: 6px;
   margin-top: 22px;
 
@@ -139,9 +146,9 @@ label {
   align-self: flex-start;
 
   span {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 18px;
-    color: #23a665;
+    color: var(--highlight-color);
   }
   input {
     opacity: 0;
@@ -156,45 +163,35 @@ label {
 .amount {
   font-weight: 300;
   font-size: 52px;
-  color: #23a665;
-
-  > em {
-    font-weight: 600;
-    color: transparent;
-    text-shadow: 0 0 0 #23a665;
-
-    &:focus {
-      outline: none;
-    }
-  }
+  color: var(--highlight-color);
 }
 
 input.description {
   font-weight: 500;
   font-size: 18px;
-  color: #0c3b24;
-  background: white;
+  color: var(--text-color);
+  background: #f6f6fe;
   border: 2px solid transparent;
   border-radius: 6px;
   padding: 11px 12px;
   padding-top: 14px;
   margin-top: 4px;
-  box-shadow: 0 4px 10px -2px rgba(#779189, 0.15);
+  box-shadow: 0 4px 10px -2px rgba(#777E91, 0.15);
 
   &:focus {
     outline: none;
-    border-color: #23a665;
-    box-shadow: 0 4px 10px -2px rgba(#23a665, 0.15);
+    border-color: var(--highlight-color);
+    box-shadow: 0 4px 10px -2px rgba(var(--highlight-color), 0.15);
   }
 
   &:-webkit-autofill {
     box-shadow:
-      0 4px 10px -2px rgba(#779189, 0.15),
+      0 4px 10px -2px rgba(#777E91, 0.15),
       0 0 0px 1000px white inset;
 
     &:focus {
       box-shadow:
-        0 4px 10px -2px rgba(#23a665, 0.15),
+        0 4px 10px -2px rgba(var(--highlight-color), 0.15),
         0 0 0px 1000px white inset;
     }
   }
@@ -204,12 +201,12 @@ input.description {
   font-weight: 700;
   font-size: 18px;
   color: white;
-  background: #1ABC8C;
+  background: var(--highlight-color);
   border: none;
   border-radius: 6px;
   padding: 14px;
   margin-top: 36px;
-  box-shadow: 0 4px 10px -2px rgba(#14916C, 0.38);
+  box-shadow: 0 4px 10px -2px rgba(#222F90, 0.38);
 
   &:focus {
     outline: none;

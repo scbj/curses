@@ -92,7 +92,7 @@ export default {
   input {
     font-weight: 600;
     font-size: 52px;
-    color: #23a665;
+    color: var(--highlight-color);
   }
 
   input {
