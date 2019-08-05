@@ -1,4 +1,6 @@
 <script>
+import { currency } from '@/filters/number'
+
 export default {
   props: {
     value: {
@@ -20,12 +22,16 @@ export default {
   },
 
   computed: {
+    formattedValue () {
+      return currency(this.value)
+    },
+
     /**
      * Returns only the integers of the value.
      * @returns {String}
      */
     integers () {
-      return String(Math.floor(this.value))
+      return this.formattedValue.split(',')[0]
     },
 
     /**
@@ -33,9 +39,7 @@ export default {
      * @returns {String}
      */
     decimals () {
-      return parseFloat(this.value)
-        .toFixed(2)
-        .replace(/^[-\d]+\./, '')
+      return this.formattedValue.split(',')[1]
     },
 
     cssVariables () {

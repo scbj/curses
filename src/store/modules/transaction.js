@@ -47,18 +47,17 @@ const actions = {
     }
   },
 
-  async create ({ commit, rootState }, payload) {
+  async create ({ commit, dispatch }, payload) {
     /**
      * Add the supplement to the refund balance.
      * @param {Number} supplement
      */
     const updateBalance = supplement => {
-      const { amount } = rootState.balance
-      commit('balance/SET_AMOUNT', amount + supplement, { root: true })
+      dispatch('balance/incrementSelf', { value: supplement }, { root: true })
     }
     const transaction = await api('transaction.create', payload)
     if (transaction && transaction._id) {
-      commit('SET_ITEMS', [ ...state.items, transaction ])
+      commit('SET_ITEMS', [ transaction, ...state.items ])
       updateBalance(transaction.amount)
       return true
     }

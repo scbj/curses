@@ -11,12 +11,20 @@ const getters = {
    * Return the amount of the balance of the current user.
    * @returns {Number}
    */
-  selfAmount (state, getters, rootState, rootGetters) {
-    const balance = state.items.find(balance => balance.owner === rootGetters['auth/username'])
+  selfAmount (state, getters) {
+    const balance = getters.self
     if (balance && balance.amount) {
       return balance.amount
     }
     return 0
+  },
+
+  /**
+   * Return the balance of the current user.
+   * @returns {Object}
+   */
+  self (state, getters, rootState, rootGetters) {
+    return state.items.find(balance => balance.owner === rootGetters['auth/username'])
   },
 
   /**
@@ -36,6 +44,13 @@ const actions = {
     if (balances && balances.length) {
       commit('SET_ITEMS', balances)
     }
+  },
+
+  incrementSelf ({ state, getters, commit }, payload) {
+    const balance = getters.self
+    const otherBalances = state.items.filter(item => item.owner !== balance.owner)
+    balance.amount += payload.value
+    commit('SET_ITEMS', [ balance, ...otherBalances ])
   }
 }
 
