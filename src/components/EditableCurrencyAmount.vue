@@ -50,7 +50,9 @@ export default {
 
   computed: {
     input () {
-      return currency(this.value)
+      const temp = currency(this.value)
+      console.log('TCL: input -> temp', temp)
+      return temp
     }
   },
 
@@ -76,8 +78,10 @@ export default {
     },
 
     updateInput (input) {
+      console.log('TCL: updateInput -> input', input)
       const value = formatAsHundredthAccuracyNumber(input)
       this.$emit('input', value)
+      console.log('TCL: updateInput -> value', value)
     }
   }
 }
