@@ -10,7 +10,9 @@ import '@/assets/compiled-svg'
 
 Vue.config.productionTip = false
 
-window.api = api
+if (process.env.NODE_ENV === 'development') {
+  window.api = api
+}
 
 Vue.use(VueSVGIcon, {
   isStroke: true

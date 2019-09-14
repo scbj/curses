@@ -58,7 +58,7 @@ export default {
     return res.json(transactions)
   }),
 
-  drop: authenticate(requiredRoles([ 'dropCollection' ], async (req, res) => {
+  drop: process.env.NODE_ENV === 'development' && authenticate(requiredRoles([ 'dropCollection' ], async (req, res) => {
     const result = await Transaction.deleteMany({})
     return res.json(result)
   }))
