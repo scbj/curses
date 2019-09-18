@@ -58,6 +58,20 @@ export default {
     return res.json(transactions)
   }),
 
+  delete: authenticate(requiredRoles([ 'deleteTransaction' ], async (req, res) => {
+    if (process.env.NODE_ENV !== 'development') {
+      return req.sendStatus(404)
+    }
+    // Retreive user inputs
+    const expectedFields = [ 'id' ]
+    const params = filterParams(req.body, expectedFields)
+    if (!validateParams(params, expectedFields)) {
+      return res.sendStatus(400)
+    }
+    const result = await Transaction.deleteOne({ _id: params.id })
+    return res.json(result)
+  })),
+
   drop: process.env.NODE_ENV === 'development' && authenticate(requiredRoles([ 'dropCollection' ], async (req, res) => {
     const result = await Transaction.deleteMany({})
     return res.json(result)
