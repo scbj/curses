@@ -53,6 +53,27 @@ export default {
     return res.status(201).json(transaction)
   }),
 
+  update: authenticate(async (req, res) => {
+    // Retreive user inputs
+    const expectedFields = [ '_id', 'owner', 'description', 'amount', 'date' ]
+    const params = filterParams(req.body, expectedFields)
+    if (!validateParams(params, expectedFields)) {
+      return res.sendStatus(400)
+    }
+
+    // An user can only edit his own transactions
+    if (this.transaction.owner !== req.user.username) {
+      return res.sendStatus(403)
+    }
+
+    const result = await Transaction.updateOne({ _id: params._id }, params)
+    if (result.nModified === 1) {
+      return res.sendStatus(204)
+    }
+
+    return res.sendStatus(202)
+  }),
+
   list: authenticate(async (req, res) => {
     const transactions = await Transaction.find().sort({ date: -1 })
     return res.json(transactions)

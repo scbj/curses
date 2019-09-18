@@ -20,9 +20,10 @@ export default async function api (action, payload) {
       body: payload && JSON.stringify(payload)
     }
     const response = await fetch('/.netlify/functions/api', options)
-    return response.headers.get('Content-Type') === 'application/json'
-      ? response.json()
-      : response.text()
+    if (response.headers.get('Content-Type') === 'application/json') {
+      return response.json()
+    }
+    return { status: response.status }
   } catch (error) {
     console.log('TCL: api -> error', error)
   }

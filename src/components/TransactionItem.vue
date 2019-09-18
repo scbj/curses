@@ -58,7 +58,11 @@ export default {
 
   methods: {
     editTransaction () {
-      this.$router.push({ name: 'home.edit' })
+      // An user can only edit his own transactions
+      if (this.transaction.owner === this.$store.get('auth/username')) {
+        this.$store.set('transaction/modal@currentTransaction', this.transaction)
+        this.$router.push({ name: 'home.edit' })
+      }
     }
   }
 }

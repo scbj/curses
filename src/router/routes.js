@@ -1,3 +1,5 @@
+import store from '@/store/index'
+
 const routes = [
   {
     path: '/',
@@ -26,6 +28,12 @@ const routes = [
         components: {
           page: () => import('@/views/Home.vue'),
           modal: () => import('@/views/ModalTransaction.vue')
+        },
+        beforeEnter: (to, from, next) => {
+          if (to.name === 'home.edit') {
+            store.set('transaction/modal@mode', 'edit')
+          }
+          next()
         }
       },
       {

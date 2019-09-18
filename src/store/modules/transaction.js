@@ -1,10 +1,15 @@
 import { make } from 'vuex-pathify'
 
 import api from '@/services/api'
+import store from '@/store'
 
 const state = {
   items: [],
-  activeFilter: 'all'
+  activeFilter: 'all',
+  modal: {
+    mode: 'create',
+    currentTransaction: null
+  }
 }
 
 const getters = {
@@ -37,7 +42,16 @@ const getters = {
   }
 }
 
-const mutations = make.mutations(state)
+const mutations = {
+  ...make.mutations(state),
+
+  cleanModalContext (state) {
+    state.modal = {
+      mode: 'create',
+      currentTransaction: null
+    }
+  }
+}
 
 const actions = {
   async list ({ commit }) {
@@ -59,6 +73,28 @@ const actions = {
     if (transaction && transaction._id) {
       commit('SET_ITEMS', [ transaction, ...state.items ])
       updateBalance(transaction.amount)
+      return true
+    }
+    return false
+  },
+
+  async update ({ commit, dispatch }, payload) {
+    /**
+     * Add the supplement to the refund balance.
+     * @param {Number} supplement
+     */
+    const updateBalance = supplement => {
+      return dispatch('balance/incrementSelf', { value: supplement }, { root: true })
+    }
+    const { status } = await api('transaction.update', payload)
+    if (status === 204) {
+      const items = state.items.filter(item => item._id !== payload._id)
+      commit('SET_ITEMS', [ payload, ...items ])
+      const oldAmount = store.get('transaction/modal@currentTransaction').amount
+      const newAmount = payload.amount
+      if (oldAmount !== newAmount) {
+        await updateBalance(newAmount - oldAmount)
+      }
       return true
     }
     return false

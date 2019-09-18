@@ -21,6 +21,10 @@ export default {
     FormTransaction
   },
 
+  beforeDestroy () {
+    this.$store.commit('transaction/cleanModalContext')
+  },
+
   methods: {
     close () {
       this.$router.push({ name: 'home' })

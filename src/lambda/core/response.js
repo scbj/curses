@@ -50,6 +50,7 @@ export function createResponse () {
      * Create the AWS lambda response object.
      */
     pack () {
+      console.log('TCL: pack -> response', response)
       return response
     }
   }

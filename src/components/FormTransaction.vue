@@ -7,9 +7,9 @@
       Date
     </label>
     <div class="date-picker">
-      <span>{{ date | calendar | capitalize }}</span>
+      <span>{{ transaction.date | calendar | capitalize }}</span>
       <input
-        v-model="date"
+        v-model="transaction.date"
         type="date"
         name="date"
       >
@@ -21,7 +21,7 @@
       class="amount"
     >
       <EditableCurrencyAmount
-        v-model="amount"
+        v-model="transaction.amount"
         focus
       /> €
     </span>
@@ -29,7 +29,7 @@
     <label for="description">Description (60 caractères max.)</label>
     <input
       ref="description"
-      v-model="description"
+      v-model="transaction.description"
       class="description"
       type="text"
       name="description"
@@ -38,12 +38,14 @@
       class="next-button"
       type="submit"
     >
-      Ajouter la dépense
+      {{ validateButtonText }}
     </button>
   </form>
 </template>
 
 <script>
+import { get } from 'vuex-pathify'
+
 import EditableCurrencyAmount from '@/components/EditableCurrencyAmount.vue'
 
 import { calendar } from '@/filters/date'
@@ -58,9 +60,29 @@ export default {
 
   data () {
     return {
-      date: new Date(),
-      amount: 0,
-      description: ''
+      transaction: {
+        date: new Date(),
+        amount: 0,
+        description: ''
+      }
+    }
+  },
+
+  computed: {
+    mode: get('transaction/modal@mode'),
+    currentTransaction: get('transaction/modal@currentTransaction'),
+
+    validateButtonText () {
+      switch (this.mode) {
+        case 'edit': return 'Modifier la dépense'
+        default: return 'Ajouter la dépense'
+      }
+    }
+  },
+
+  mounted () {
+    if (this.mode === 'edit' && this.currentTransaction) {
+      Object.assign(this.transaction, this.currentTransaction)
     }
   },
 
@@ -71,8 +93,8 @@ export default {
 
       /** @returns {Element} */
       const validate = () => {
-        if (this.amount === 0) return this.$refs.amount
-        else if (!this.description.trim()) return this.$refs.description
+        if (this.transaction.amount === 0) return this.$refs.amount
+        else if (!this.transaction.description.trim()) return this.$refs.description
       }
 
       const errorElement = validate()
@@ -80,23 +102,34 @@ export default {
         return this.shake(errorElement)
       }
 
-      // Create the transaction with the specified data
-      const success = this.$store.dispatch('transaction/create', {
-        date: this.date,
-        amount: this.amount,
-        description: this.description
-      })
+      const updateTransaction = () => {
+        // Update the specified transaction
+        console.log('TCL: updateTransaction -> this.transaction', JSON.stringify(this.transaction))
+        return this.$store.dispatch('transaction/update', Object.assign({}, this.transaction))
+      }
+
+      const createTransaction = () => {
+        // Create the transaction with the specified data
+        console.log('TCL: createTransaction -> this.transaction', this.transaction)
+        return this.$store.dispatch('transaction/create', this.transaction)
+      }
+
+      const success = this.mode === 'edit'
+        ? updateTransaction()
+        : createTransaction()
+      console.log('TCL: next -> success', success)
+      console.log('TCL: next -> await success', await success)
 
       // If it's a succes then reset some fields
-      if (success) {
+      if (await success) {
         this.resetAmountDescription()
         this.$emit('completed')
       }
     },
 
     resetAmountDescription () {
-      this.amount = 0
-      this.description = ''
+      this.transaction.amount = 0
+      this.transaction.description = ''
     },
 
     shake (element) {
