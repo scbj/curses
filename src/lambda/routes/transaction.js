@@ -60,7 +60,7 @@ export default {
     if (!validateParams(params, expectedFields)) {
       return res.sendStatus(400)
     }
-
+    
     const transaction = await Transaction.findById(id)
     if (!transaction) {
       return res.sendStatus(404)
@@ -71,7 +71,7 @@ export default {
       return res.sendStatus(403)
     }
 
-    const result = await Transaction.updateOne({ _id: params._id }, params)
+    const result = await Transaction.updateOne({ _id: id }, params)
     if (result.nModified === 1) {
       return res.sendStatus(204)
     }
