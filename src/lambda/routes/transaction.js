@@ -56,12 +56,12 @@ export default {
   update: authenticate(async (req, res) => {
     // Retreive user inputs
     const expectedFields = [ '_id', 'description', 'amount', 'date' ]
-    const { _id: id, ...params } = filterParams(req.body, expectedFields)
+    const params = filterParams(req.body, expectedFields)
     if (!validateParams(params, expectedFields)) {
       return res.sendStatus(400)
     }
     
-    const transaction = await Transaction.findById(id)
+    const transaction = await Transaction.findById(params._id)
     if (!transaction) {
       return res.sendStatus(404)
     }
@@ -71,7 +71,7 @@ export default {
       return res.sendStatus(403)
     }
 
-    const result = await Transaction.updateOne({ _id: id }, params)
+    const result = await Transaction.updateOne({ _id: params._id }, params)
     if (result.nModified === 1) {
       return res.sendStatus(204)
     }
