@@ -104,21 +104,17 @@ export default {
 
       const updateTransaction = () => {
         // Update the specified transaction
-        console.log('TCL: updateTransaction -> this.transaction', JSON.stringify(this.transaction))
         return this.$store.dispatch('transaction/update', Object.assign({}, this.transaction))
       }
 
       const createTransaction = () => {
         // Create the transaction with the specified data
-        console.log('TCL: createTransaction -> this.transaction', this.transaction)
         return this.$store.dispatch('transaction/create', this.transaction)
       }
 
       const success = this.mode === 'edit'
         ? updateTransaction()
         : createTransaction()
-      console.log('TCL: next -> success', success)
-      console.log('TCL: next -> await success', await success)
 
       // If it's a succes then reset some fields
       if (await success) {

@@ -14,5 +14,5 @@ try {
     }
   )
 } catch (error) {
-  console.log('TCL: connectToDatabase -> 💥', error)
+  console.log('TCL: failed to connect to database -> 💥', error)
 }

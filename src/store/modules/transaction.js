@@ -88,9 +88,12 @@ const actions = {
     }
     const { status } = await api('transaction.update', payload)
     if (status === 204) {
-      const items = state.items.filter(item => item._id !== payload._id)
-      commit('SET_ITEMS', [ payload, ...items ])
-      const oldAmount = store.get('transaction/modal@currentTransaction').amount
+      // We need to replace the old items array to a fresh new
+      const items = state.items.slice()
+      const item = items.find(item => item._id === payload._id)
+      const oldAmount = item.amount
+      Object.assign(item, payload)
+      commit('SET_ITEMS', items)
       const newAmount = payload.amount
       if (oldAmount !== newAmount) {
         await updateBalance(newAmount - oldAmount)
