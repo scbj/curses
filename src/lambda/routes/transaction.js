@@ -55,14 +55,19 @@ export default {
 
   update: authenticate(async (req, res) => {
     // Retreive user inputs
-    const expectedFields = [ '_id', 'owner', 'description', 'amount', 'date' ]
-    const params = filterParams(req.body, expectedFields)
+    const expectedFields = [ '_id', 'description', 'amount', 'date' ]
+    const { id: _id, ...params } = filterParams(req.body, expectedFields)
     if (!validateParams(params, expectedFields)) {
       return res.sendStatus(400)
     }
 
+    const transaction = await Transaction.findById(id)
+    if (!transaction) {
+      return res.sendStatus(404)
+    }
+
     // An user can only edit his own transactions
-    if (this.transaction.owner !== req.user.username) {
+    if (transaction.owner !== req.user.username) {
       return res.sendStatus(403)
     }
 
