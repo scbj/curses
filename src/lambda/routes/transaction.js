@@ -56,7 +56,7 @@ export default {
   update: authenticate(async (req, res) => {
     // Retreive user inputs
     const expectedFields = [ '_id', 'description', 'amount', 'date' ]
-    const { id: _id, ...params } = filterParams(req.body, expectedFields)
+    const { _id: id, ...params } = filterParams(req.body, expectedFields)
     if (!validateParams(params, expectedFields)) {
       return res.sendStatus(400)
     }
