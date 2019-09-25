@@ -6,7 +6,7 @@ export default {
     const balances = await Transaction.aggregate([
       { $match: { refunded: false } },
       { $group: { _id: '$owner', owner: { $first: '$owner' }, amount: { $sum: '$amount' } } }
-    ]).sort({ owner: 1 })
+    ]).sort({ amount: -1 })
     return res.json(balances)
   })
 }

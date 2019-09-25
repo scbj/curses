@@ -17,9 +17,17 @@ export default {
      * of each balance in the relation to the total.
      */
     percents () {
-      const balances = this.balances.slice().sort((a, b) => {
-        return a.owner === this.username ? -1 : b.owner === this.username ? 1 : 0
-      })
+      /**
+       * Returns true if the balance of the authenticated user is present in the balance list.
+       * @returns {Boolean}
+       */
+      const hasOwnBalance = () => this.balances.some(balance => balance.owner === this.username)
+
+      const balances = hasOwnBalance()
+        ? this.balances.slice().sort((a, b) => {
+          return a.owner === this.username ? -1 : b.owner === this.username ? 1 : 0
+        })
+        : [ { amount: 0 }, ...this.balances ]
       const asPercent = ({ amount }) => `${100 * amount / this.total}%`
       return balances.map(asPercent)
     }
