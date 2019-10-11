@@ -36,6 +36,7 @@ button,
 input,
 a {
   font-family: 'TT Commons';
+  -webkit-tap-highlight-color: transparent;
 
   &.text-button {
     font-size: 18px;

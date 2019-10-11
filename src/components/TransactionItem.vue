@@ -5,7 +5,14 @@
       refunded: transaction.refunded,
       own: isOwnTransaction
     }"
+    :style="translateStyle"
     @click="editTransaction"
+    @touchstart="dragStart"
+    @touchend="dragEnd"
+    @touchmove="drag"
+    @mousedown="dragStart"
+    @mouseup="dragEnd"
+    @mousemove="drag"
   >
     <span class="label">{{ transaction.description }}</span>
     <span class="date">
@@ -44,15 +51,30 @@ export default {
     }
   },
 
+  data () {
+    return {
+      active: false,
+      currentX: 0,
+      initialX: 0
+    }
+  },
+
   computed: {
     username: get('auth/username'),
 
     isOwnTransaction () {
+      console.log('TCL: isOwnTransaction -> this.transaction', this.transaction)
       return this.username === this.transaction.owner
     },
 
     owner () {
       return this.isOwnTransaction ? 'Moi' : this.transaction.owner
+    },
+
+    translateStyle () {
+      return {
+        'transform': `translateX(${this.currentX}px)`
+      }
     }
   },
 
@@ -62,6 +84,28 @@ export default {
       if (this.transaction.owner === this.$store.get('auth/username')) {
         this.$store.set('transaction/modal@currentTransaction', this.transaction)
         this.$router.push({ name: 'home.edit' })
+      }
+    },
+
+    dragStart (e) {
+      const { clientX } = e.type === 'touchstart' ? e.touches[0] : e
+      this.initialX = clientX
+      this.active = true
+    },
+
+    dragEnd () {
+      // this.initialX = this.currentX
+      this.currentX = 0
+
+      this.active = false
+    },
+
+    drag (e) {
+      if (this.active) {
+        e.preventDefault()
+
+        const { clientX } = e.type === 'touchmove' ? e.touches[0] : e
+        this.currentX = clientX - this.initialX
       }
     }
   }
@@ -80,8 +124,12 @@ $easing: cubic-bezier(.165, .84, .44, 1);
     "label amount"
     "date amount";
   grid-gap: 4px;
+  grid-column-gap: 12px;
   padding: 15px 17px;
-  transition: all .2s $easing;
+  touch-action: none;
+  user-select: none;
+  cursor: pointer;
+  transition: all .16s $easing;
 
   &.own {
     .amount {
@@ -98,6 +146,9 @@ $easing: cubic-bezier(.165, .84, .44, 1);
 .label {
   font-weight: 600;
   font-size: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   grid-area: label;
 }
 
@@ -112,5 +163,20 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   color: #16284c;
   grid-area: amount;
   align-self: center;
+}
+
+.transaction-item.refunded .amount {
+  position: relative;
+
+  &::before {
+    content: '';
+    background-color: #08c79c;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -6px;
+    right: 50%;
+    width: 5px;
+    height: 5px;
+  }
 }
 </style>
