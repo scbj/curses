@@ -129,6 +129,7 @@ export default {
     },
 
     shake (element) {
+      window.navigator.vibrate([50, 50, 50, 50, 50])
       element.animate([
         { borderColor: '#fb4b4b' },
         { borderColor: '#fb4b4b' },

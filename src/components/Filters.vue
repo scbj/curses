@@ -22,7 +22,10 @@ export default {
 
   methods: {
     setActive (filter) {
-      this.activeFilter = filter.name
+      if (this.activeFilter !== filter.name) {
+        window.navigator.vibrate(10)
+        this.activeFilter = filter.name
+      }
     },
 
     isActive (filter) {
