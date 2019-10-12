@@ -1,21 +1,26 @@
-<template>
-  <div class="login">
-    <img
-      alt="Vue logo"
-      src="../assets/images/logo.svg"
-    >
-    <button @click="login">
-      Se connecter
-    </button>
-  </div>
-</template>
-
 <script>
+import Button from '@/components/Button'
+
 export default {
   methods: {
     login () {
       this.$store.dispatch('auth/login')
     }
+  },
+
+  render (h) {
+    const logoSrc = require('@/assets/images/logo.svg')
+    return (
+      <div class="login">
+        <img
+          alt="Vue logo"
+          src={logoSrc}
+        />
+        <Button onClick={this.login}>
+          Se connecter
+        </Button>
+      </div>
+    )
   }
 }
 </script>
@@ -24,7 +29,6 @@ export default {
 .login {
   display: grid;
   grid-template-rows: 1fr auto;
-  // justify-content: center;
   padding: 50px 34px;
   width: 100%;
   height: 100vh;
