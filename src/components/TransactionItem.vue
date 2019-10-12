@@ -1,18 +1,18 @@
 <template>
+  <!-- @touchstart="dragStart"
+    @touchend="dragEnd"
+    @touchmove="drag"
+    @mousedown="dragStart"
+    @mouseup="dragEnd"
+    @mousemove="drag"
+    :style="translateStyle" -->
   <li
     class="transaction-item"
     :class="{
       refunded: transaction.refunded,
       own: isOwnTransaction
     }"
-    :style="translateStyle"
     @click="editTransaction"
-    @touchstart="dragStart"
-    @touchend="dragEnd"
-    @touchmove="drag"
-    @mousedown="dragStart"
-    @mouseup="dragEnd"
-    @mousemove="drag"
   >
     <span class="label">{{ transaction.description }}</span>
     <span class="date">
@@ -94,7 +94,6 @@ export default {
     },
 
     dragEnd () {
-      // this.initialX = this.currentX
       this.currentX = 0
 
       this.active = false
@@ -126,7 +125,6 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   grid-gap: 4px;
   grid-column-gap: 12px;
   padding: 15px 17px;
-  touch-action: none;
   user-select: none;
   cursor: pointer;
   transition: all .16s $easing;
