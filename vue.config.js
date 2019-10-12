@@ -1,4 +1,8 @@
 module.exports = {
+  configureWebpack: {
+    devtool: 'source-map'
+  },
+
   chainWebpack: (config) => {
     config.plugin('define').tap(([ definition, ...rest ]) => {
       const version = JSON.stringify(require('./package.json').version)
