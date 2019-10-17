@@ -63,7 +63,6 @@ export default {
     username: get('auth/username'),
 
     isOwnTransaction () {
-      console.log('TCL: isOwnTransaction -> this.transaction', this.transaction)
       return this.username === this.transaction.owner
     },
 
@@ -161,20 +160,5 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   color: #16284c;
   grid-area: amount;
   align-self: center;
-}
-
-.transaction-item.refunded .amount {
-  position: relative;
-
-  &::before {
-    content: '';
-    background-color: #08c79c;
-    border-radius: 50%;
-    position: absolute;
-    bottom: -6px;
-    right: 50%;
-    width: 5px;
-    height: 5px;
-  }
 }
 </style>
