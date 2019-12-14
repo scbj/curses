@@ -40,6 +40,16 @@ export default {
       ]
     },
 
+    vibrations () {
+      return [
+        [50],
+        [150],
+        [450],
+        [950],
+        [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
+      ]
+    },
+
     maxAttempt () {
       return this.buttonLabels.length - 1
     },
@@ -57,6 +67,7 @@ export default {
   methods: {
     logout () {
       this.attemptCount += 1
+      window.navigator.vibrate(this.vibrations[this.attemptCount - 1])
       if (this.attemptCount > this.maxAttempt) {
         this.$store.dispatch('auth/logout')
         this.$router.push({ name: 'login' })
