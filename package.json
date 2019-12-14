@@ -1,6 +1,6 @@
 {
   "name": "curses",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A Vue.js project to manage common expenses",
   "author": {
     "name": "Sacha",
