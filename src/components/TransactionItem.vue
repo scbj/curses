@@ -127,6 +127,7 @@ $easing: cubic-bezier(.165, .84, .44, 1);
   user-select: none;
   cursor: pointer;
   transition: all .16s $easing;
+  -webkit-tap-highlight-color: transparent;
 
   &.own {
     .amount {
