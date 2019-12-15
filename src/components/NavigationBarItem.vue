@@ -8,6 +8,10 @@ export default {
     route: {
       type: Object,
       required: true
+    },
+    label: {
+      type: String,
+      required: true
     }
   },
 
@@ -19,6 +23,7 @@ export default {
           height='20'
           width='20'
         />
+        <span class="label">{ this.label }</span>
       </router-link>
     )
   }
@@ -40,5 +45,30 @@ export default {
   svg {
     stroke: #8090b2;
   }
+
+  &.active {
+    svg {
+      transform: translate3d(0, -10px, 0);
+    }
+    .label {
+      transform: translate3d(0, 14px, 0);
+      opacity: 1;
+    }
+  }
+}
+
+svg,
+.label {
+  transition:
+    opacity .2s cubic-bezier(.22,1.01,.12,.99),
+    transform .35s cubic-bezier(.22,1.01,.12,.99);
+}
+
+.label {
+  color: var(--highlight-color);
+  font-weight: 600;
+  position: absolute;
+  transform: translate3d(0, 20px, 0);
+  opacity: 0;
 }
 </style>

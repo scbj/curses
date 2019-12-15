@@ -7,19 +7,23 @@ export default {
       items: [
         {
           iconName: 'home',
-          route: { name: 'home' }
+          route: { name: 'home' },
+          label: 'Accueil'
         },
         {
           iconName: 'stats',
-          route: { name: 'stats' }
+          route: { name: 'stats' },
+          label: 'Statistique'
         },
         {
           iconName: 'calendar',
-          route: { name: 'activity' }
+          route: { name: 'activity' },
+          label: 'Activité'
         },
         {
           iconName: 'user',
-          route: { name: 'account' }
+          route: { name: 'account' },
+          label: 'Compte'
         }
       ]
     }
@@ -27,7 +31,7 @@ export default {
 
   render (h) {
     const createItem = item => (
-      <NavigationBarItem icon={item.iconName} route={item.route} />
+      <NavigationBarItem icon={item.iconName} route={item.route} label={item.label} />
     )
     return (
       <nav class='navigation-bar-list'>
