@@ -1,4 +1,6 @@
 <script>
+import { get } from 'vuex-pathify'
+
 import Balance from '@/components/Balance'
 import Distribution from '@/components/Distribution'
 import Filters from '@/components/Filters'
@@ -13,10 +15,16 @@ export default {
     }
   },
 
+  computed: {
+    balanceSelfAmount: get('balance/selfAmount')
+  },
+
   render (h) {
     return (
       <div class="home">
-        <Balance />
+        <Balance
+          amount={this.balanceSelfAmount}
+          label="En attente de remboursement"/>
         <Distribution />
         <Filters />
         <TransactionList />

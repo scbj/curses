@@ -7,6 +7,12 @@ export default {
     }
   },
 
+  methods: {
+    dispatchClickEvent (event) {
+      this.$emit('click', event)
+    }
+  },
+
   render (h) {
     if (this.route) {
       return (
@@ -16,7 +22,7 @@ export default {
       )
     }
     return (
-      <button class="text-button" onClick={this.$emit('click', event)}>
+      <button class="text-button" onClick={this.dispatchClickEvent}>
         { this.$slots.default }
       </button>
     )

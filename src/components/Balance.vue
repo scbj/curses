@@ -1,11 +1,16 @@
 <script>
-import { get } from 'vuex-pathify'
-
 import Currency from '@/components/Currency'
 
 export default {
-  computed: {
-    amount: get('balance/selfAmount')
+  props: {
+    amount: {
+      type: Number,
+      default: 0
+    },
+    label: {
+      type: String,
+      default: ''
+    }
   },
 
   render (h) {
@@ -15,7 +20,14 @@ export default {
           value={this.amount}
           fontSizes={[ '36px', '29px' ]}
           fontWeights={[ 600, 500 ]} />
-        <span class="description">En attente de remboursement</span>
+        {
+          this.label && (
+            <span class="description">
+              {this.label}
+              { this.$slots.default }
+            </span>
+          )
+        }
       </div>
     )
   }
@@ -33,5 +45,6 @@ export default {
 .description {
   font-size: 18px;
   font-weight: 400;
+  margin-top: 2px;
 }
 </style>
