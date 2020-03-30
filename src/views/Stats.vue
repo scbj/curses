@@ -74,7 +74,6 @@ h2 {
   margin-top: 8px;
 
   .filter-button {
-    font-weight: 400;
     margin-left: 9px;
   }
 }
