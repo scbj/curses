@@ -1,3 +1,15 @@
+<template>
+  <figure
+    class="distribution-chart"
+    :class="{ disabled }"
+    :style="gridTemplateColumns"
+  >
+    <div class="bar" />
+    <div class="bar" />
+    <div class="bar" />
+  </figure>
+</template>
+
 <script>
 export default {
   props: {
@@ -12,17 +24,11 @@ export default {
       return {
         gridTemplateColumns: this.percents.join(' ')
       }
-    }
-  },
+    },
 
-  render (h) {
-    return (
-      <figure class="distribution-chart" style={this.gridTemplateColumns}>
-        <div class="bar" />
-        <div class="bar" />
-        <div class="bar" />
-      </figure>
-    )
+    disabled () {
+      return this.percents.length === 0
+    }
   }
 }
 </script>
@@ -33,6 +39,18 @@ export default {
 
   display: grid;
   grid-template-rows: var(--height);
+
+  &.disabled {
+    filter: grayscale(1);
+
+    .bar {
+      opacity: 0;
+
+      &:nth-child(2) {
+        opacity: .27;
+      }
+    }
+  }
 }
 
 .bar {

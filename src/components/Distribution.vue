@@ -17,6 +17,8 @@ export default {
      * of each balance in the relation to the total.
      */
     percents () {
+      if (this.balances.length === 0) return []
+
       /**
        * Returns true if the balance of the authenticated user is present in the balance list.
        * @returns {Boolean}

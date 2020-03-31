@@ -8,26 +8,38 @@
         non remboursé
       </TextButton>
     </Balance>
-    <section class="balances-section">
-      <div class="header">
-        <span class="title">Soldes</span>
-        <TextButton class="sort-button" @click="onClick">
-          Trier par pertinence
-        </TextButton>
+    <template v-if="balanceTotalAmount > 0">
+      <section class="balances-section">
+        <div class="header">
+          <span class="title">Soldes</span>
+          <TextButton class="sort-button" @click="onClick">
+            Trier par pertinence
+          </TextButton>
+        </div>
+        <ListView class="balance-list" :items="sortedBalances">
+          <template v-slot:item-template="{ item }">
+            <BalanceItem
+              :data="item"
+              :color="getColor(item, sortedBalances)"
+              :count="getCount(item)"
+              :days="getDays(item)"
+            >
+              <MonthlyHistoryPreview class="calendar" :days="getDays(item)" />
+            </BalanceItem>
+          </template>
+        </ListView>
+      </section>
+    </template>
+    <template v-else>
+      <div class="no-data">
+        <svgicon
+          icon="no-data"
+          height="200"
+          width="200"
+        />
+        <span class="label">Aucune dépenses non remboursé</span>
       </div>
-      <ListView class="balance-list" :items="sortedBalances">
-        <template v-slot:item-template="{ item }">
-          <BalanceItem
-            :data="item"
-            :color="getColor(item, sortedBalances)"
-            :count="getCount(item)"
-            :days="getDays(item)"
-          >
-            <MonthlyHistoryPreview class="calendar" :days="getDays(item)" />
-          </BalanceItem>
-        </template>
-      </ListView>
-    </section>
+    </template>
   </div>
 </template>
 
@@ -142,5 +154,20 @@ h2 {
 
 .balance-list {
   --balance-item__background-color: #08c79c;
+}
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px;
+
+  .label {
+    font-size: 18px;
+    font-weight: 700;
+    opacity: .27;
+
+    margin-top: 1em;
+  }
 }
 </style>
