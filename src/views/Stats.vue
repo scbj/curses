@@ -12,10 +12,10 @@
       <div class="header">
         <span class="title">Soldes</span>
         <TextButton class="sort-button" @click="onClick">
-          Trier par montant
+          Trier par pertinence
         </TextButton>
       </div>
-      <ListView class="balance-list" :items="balances">
+      <ListView class="balance-list" :items="sortedBalances">
         <template v-slot:item-template="{ item }">
           <BalanceItem :data="item" />
         </template>
@@ -45,7 +45,15 @@ export default {
   computed: {
     balanceTotalAmount: get('balance/totalAmount'),
     balances: get('balance/items'),
-    selfBalance: get('balance/self')
+    selfBalance: get('balance/self'),
+    username: get('auth/username'),
+
+    sortedBalances () {
+      return this.balances.slice().sort((a, b) => {
+        if (a.owner === this.username) return -1 // -1
+        return b.owner === this.username // 1 or 0
+      })
+    }
   },
 
   methods: {
