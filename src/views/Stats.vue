@@ -1,24 +1,25 @@
 <template>
   <div class="stats">
-    <h2 class="page-title">Répartitions</h2>
+    <h2 class="page-title">
+      Répartitions
+    </h2>
     <Balance :amount="balanceTotalAmount" label="Total">
-      <TextButton class="filter-button" @click="onClick">non remboursé</TextButton>
+      <TextButton class="filter-button" @click="onClick">
+        non remboursé
+      </TextButton>
     </Balance>
     <section class="balances-section">
       <div class="header">
         <span class="title">Soldes</span>
-        <TextButton class="sort-button" @click="onClick">Trier par montant</TextButton>
+        <TextButton class="sort-button" @click="onClick">
+          Trier par montant
+        </TextButton>
       </div>
-      <ul class="balance-list">
-        <template v-for="balance in balances">
-          <li class="balance-item" :key="balance._id">
-            <span>6 dépenses</span>
-            <span>Moi</span>
-            <span>Montant</span>
-            <Balance :amount="27" />
-          </li>
+      <ListView class="balance-list" :items="balances">
+        <template v-slot:item-template="{ item }">
+          <BalanceItem :data="item" />
         </template>
-      </ul>
+      </ListView>
     </section>
   </div>
 </template>
@@ -27,18 +28,24 @@
 import { get } from 'vuex-pathify'
 
 import Balance from '@/components/Balance'
+import BalanceItem from '@/components/BalanceItem'
+import ListView from '@/components/ListView'
 import TextButton from '@/components/TextButton'
 
 export default {
+  name: 'Stats',
+
   components: {
     Balance,
+    BalanceItem,
+    ListView,
     TextButton
   },
 
   computed: {
     balanceTotalAmount: get('balance/totalAmount'),
     balances: get('balance/items'),
-    selfBalance: get('balance/self'),
+    selfBalance: get('balance/self')
   },
 
   methods: {
@@ -95,15 +102,7 @@ h2 {
   }
 }
 
-.balance-item {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, auto);
-  border-radius: 8px;
-  background: var(--background-color);
-  box-shadow: 0 1px 4px -1px rgba(#000000, 16%);
-  padding: 13px 15px;
-  margin: 9px;
-  margin-top: 22px;
+.balance-list {
+  --balance-item__background-color: #08c79c;
 }
 </style>

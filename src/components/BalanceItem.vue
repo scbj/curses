@@ -1,0 +1,85 @@
+<template>
+  <div class="balance-item">
+    <span class="count">6 dépenses</span>
+    <span class="owner">{{ data.owner }}</span>
+    <span class="amount-label">Montant</span>
+    <Currency
+      class="amount"
+      :value="data.amount"
+      :font-sizes="[ '36px', '29px' ]"
+      :font-weights="[ 600, 500 ]"
+    />
+    <MonthlyHistoryPreview class="calendar" />
+  </div>
+</template>
+
+<script>
+import Currency from '@/components/Currency'
+import MonthlyHistoryPreview from '@/components/MonthlyHistoryPreview'
+
+export default {
+  components: {
+    Currency,
+    MonthlyHistoryPreview
+  },
+
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.balance-item {
+  color: white;
+  background: var(--balance-item__background-color);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px -1px rgba(#000000, 16%);
+  display: grid;
+  grid: auto 1fr repeat(2, auto) / repeat(2, 1fr);
+  padding: 18px 13px;
+  margin: 9px;
+  margin-top: 22px;
+}
+
+.count {
+  font-weight: 600;
+  font-size: 18px;
+
+  grid-row: 1;
+}
+
+.owner {
+  font-size: 18px;
+  font-weight: 700;
+
+  grid-row: 1;
+  grid-column: 2;
+  justify-self: flex-end;
+  margin-bottom: 17px;
+}
+
+.amount-label {
+  font-weight: 500;
+  font-size: 15px;
+
+  grid-row: 3;
+  grid-column: 1;
+  margin-bottom: 4px;
+}
+
+.amount {
+  grid-row: 4;
+  grid-column: 1;
+}
+
+.calendar {
+  grid-row: 2 / span 3;
+  grid-column: 2;
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+</style>
