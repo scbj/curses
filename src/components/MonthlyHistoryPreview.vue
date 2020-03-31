@@ -1,22 +1,41 @@
 <template>
   <div class="monthly-history-preview">
-    <div class="empty-day-start" />
     <div
-      v-for="index in count"
+      class="empty-day-start"
+      :style="{ '--span-count': spanCount }"
+    />
+    <div
+      v-for="index in dayCount"
       :key="index"
       class="day"
       :class="{ highlight: hasTransaction(index + 1)}"
     />
-    <div class="empty-day-end" />
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      count: 24,
-      days: [ 3, 9, 13, 19, 20 ]
+  props: {
+    days: {
+      type: Array,
+      required: true
+    }
+  },
+
+  computed: {
+    now () {
+      return new Date()
+    },
+
+    dayCount () {
+      const lastDay = new Date(this.now.getFullYear(), this.now.getMonth() + 1, 0)
+      return lastDay.getDate()
+    },
+
+    spanCount () {
+      const firstDay = new Date(this.now.getFullYear(), this.now.getMonth(), 1)
+      const dayNumber = firstDay.getDay()
+      return dayNumber === 0 ? 6 : dayNumber - 1
     }
   },
 
@@ -31,12 +50,12 @@ export default {
 <style lang="scss" scoped>
 .monthly-history-preview {
   display: grid;
-  grid: repeat(5, auto) / repeat(7, auto);
+  grid: repeat(6, auto) / repeat(7, auto);
   gap: 4px;
 }
 
 .empty-day-start {
-  grid-column: span 6;
+  grid-column: span var(--span-count);
 }
 
 .day {

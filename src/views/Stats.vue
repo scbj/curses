@@ -21,7 +21,10 @@
             :data="item"
             :color="getColor(item, sortedBalances)"
             :count="getCount(item)"
-          />
+            :days="getDays(item)"
+          >
+            <MonthlyHistoryPreview class="calendar" :days="getDays(item)" />
+          </BalanceItem>
         </template>
       </ListView>
     </section>
@@ -34,6 +37,7 @@ import { get } from 'vuex-pathify'
 import Balance from '@/components/Balance'
 import BalanceItem from '@/components/BalanceItem'
 import ListView from '@/components/ListView'
+import MonthlyHistoryPreview from '@/components/MonthlyHistoryPreview'
 import TextButton from '@/components/TextButton'
 
 export default {
@@ -43,6 +47,7 @@ export default {
     Balance,
     BalanceItem,
     ListView,
+    MonthlyHistoryPreview,
     TextButton
   },
 
@@ -76,6 +81,14 @@ export default {
 
     getCount (item) {
       return this.transactions.filter(x => x.owner === item.owner && !x.refunded).length
+    },
+
+    getDays (item) {
+      // const now = new Date()
+      // const dayCount = new Date(now.getFullYear(), now.getMonth(), 0).getDate()
+      return this.transactions
+        .filter(x => x.owner === item.owner && !x.refunded)
+        .map(x => new Date(x.date).getDate())
     }
   }
 }

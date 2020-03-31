@@ -9,18 +9,18 @@
       :font-sizes="[ '36px', '29px' ]"
       :font-weights="[ 600, 500 ]"
     />
-    <MonthlyHistoryPreview class="calendar" />
+    <div class="graph">
+      <slot />
+    </div>
   </div>
 </template>
 
 <script>
 import Currency from '@/components/Currency'
-import MonthlyHistoryPreview from '@/components/MonthlyHistoryPreview'
 
 export default {
   components: {
-    Currency,
-    MonthlyHistoryPreview
+    Currency
   },
 
   props: {
@@ -86,7 +86,7 @@ export default {
   grid-column: 1;
 }
 
-.calendar {
+.graph {
   grid-row: 2 / span 3;
   grid-column: 2;
   justify-self: flex-end;
