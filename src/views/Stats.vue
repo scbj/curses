@@ -17,7 +17,7 @@
       </div>
       <ListView class="balance-list" :items="sortedBalances">
         <template v-slot:item-template="{ item }">
-          <BalanceItem :data="item" />
+          <BalanceItem :data="item" :color="getColor(item, sortedBalances)" />
         </template>
       </ListView>
     </section>
@@ -59,6 +59,14 @@ export default {
   methods: {
     onClick () {
       console.log('clicked!')
+    },
+
+    getColor (item, items) {
+      if (item.owner === this.username) return '#08c79c'
+      const others = items.filter(x => x.owner !== this.username)
+      const maxAmount = Math.max(...others.map(x => x.amount))
+      if (item.amount === maxAmount) return '#fbc64b'
+      return '#4b60fb'
     }
   }
 }

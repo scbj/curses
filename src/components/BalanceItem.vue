@@ -1,5 +1,5 @@
 <template>
-  <div class="balance-item">
+  <div class="balance-item" :style="{ backgroundColor: color }">
     <span class="count">6 dépenses</span>
     <span class="owner">{{ data.owner }}</span>
     <span class="amount-label">Montant</span>
@@ -24,6 +24,11 @@ export default {
   },
 
   props: {
+    color: {
+      type: String,
+      required: true
+    },
+
     data: {
       type: Object,
       required: true
