@@ -1,7 +1,7 @@
 import netlifyIdentity from 'netlify-identity-widget'
 
 netlifyIdentity.init({
-  APIUrl: 'https://curses.scbj.io/.netlify/identity',
+  APIUrl: 'https://curses.scbj.dev/.netlify/identity',
 
   // Allow Netlify to put its logo at the bottom of the login dialog
   logo: true
